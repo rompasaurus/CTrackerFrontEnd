@@ -62,7 +62,7 @@ export class BasicAuthenticationService {
     if(this.getAuthenticatedUser())
       return sessionStorage.getItem(TOKEN)
     else
-      return
+      return null
   }
 
   isUserLoggedIn() {

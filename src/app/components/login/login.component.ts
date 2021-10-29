@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { BasicAuthenticationService } from 'src/app/services/basic-authentication.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginRequestPayload } from './login-request.payload';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { throwError } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,50 +13,47 @@ import { BasicAuthenticationService } from 'src/app/services/basic-authenticatio
 })
 export class LoginComponent implements OnInit {
 
-  username = 'in28minutes'
-  password = ''
-  errorMessage = 'Invalid Credentials'
-  invalidLogin = false
+  loginForm!: FormGroup;
+  loginRequestPayload: LoginRequestPayload;
+  registerSuccessMessage!: string;
+  isError!: boolean;
 
-  //Router
-  //Angular.giveMeRouter
-  //Dependency Injection
-  constructor(private router: Router,
-    private basicAuthenticationService: BasicAuthenticationService) { }
-
-  ngOnInit() {
+  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute,
+    private router: Router, private toastr: ToastrService) {
+    this.loginRequestPayload = {
+      username: '',
+      password: ''
+    };
   }
 
-  handleBasicAuthLogin() {
-    // console.log(this.username);
-    //if(this.username==="in28minutes" && this.password === 'dummy') {
-    this.basicAuthenticationService.executeAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome', this.username])
-            this.invalidLogin = false      
-          },
-          error => {
-            console.log(error)
-            this.invalidLogin = true
-          }
-        )
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
+    });
+
+    this.activatedRoute.queryParams
+      .subscribe(params => {
+        if (params.registered !== undefined && params.registered === 'true') {
+          this.toastr.success('Signup Successful');
+          this.registerSuccessMessage = 'Please Check your inbox for activation email '
+            + 'activate your account before you Login!';
+        }
+      });
   }
 
-  handleJWTAuthLogin() {
-    this.basicAuthenticationService.executeJWTAuthenticationService(this.username, this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome', this.username])
-            this.invalidLogin = false      
-          },
-          error => {
-            console.log(error)
-            this.invalidLogin = true
-          }
-        )
+  login() {
+    this.loginRequestPayload.username = this.loginForm.get('username').value;
+    this.loginRequestPayload.password = this.loginForm.get('password').value;
+
+    this.authService.login(this.loginRequestPayload).subscribe(data => {
+      this.isError = false;
+      this.router.navigateByUrl('');
+      this.toastr.success('Login Successful');
+    }, error => {
+      this.isError = true;
+      throwError(error);
+    });
   }
 
 }
