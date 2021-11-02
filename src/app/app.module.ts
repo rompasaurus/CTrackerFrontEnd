@@ -10,7 +10,6 @@ import { ParkService } from './services/park.service';
 import { RideService } from './services/ride.service';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpIntercepterBasicAuthService } from './services/http/http-intercepter-basic-auth.service';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxWebstorageModule } from 'ngx-webstorage';
