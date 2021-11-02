@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Park } from 'src/app/common/park';
-import { ParkService } from 'src/app/services/park.service';
+import { ParkModel, ParkService } from 'src/app/services/park.service';
 
 @Component({
   selector: 'app-park-list',
@@ -8,7 +8,7 @@ import { ParkService } from 'src/app/services/park.service';
   styleUrls: ['./park-list.component.css']
 })
 export class ParkListComponent implements OnInit {
-  parks!: Park[];
+  parks!: ParkModel[];
   
   constructor(private parkService: ParkService) { }
 
@@ -20,6 +20,9 @@ export class ParkListComponent implements OnInit {
     this.parkService.getParkList().subscribe(
       data => {
         this.parks = data;
+        this.parks.forEach(element => {
+          console.log(element);
+        });
       }
     )
   }

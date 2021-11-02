@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Park } from '../common/park';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +10,16 @@ export class ParkService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getParkList(): Observable<Park[]> {
+  getParkList(): Observable<ParkModel[]> {
     console.log("getting park list");
-    var response = this.httpClient.get<GetResponse>(this.baseUrl).pipe(
-      map(response => response._embedded.parks)
-    );
-    console.log("response: ", response);
-    return response;
+    let parks = this.httpClient.get<Array<ParkModel>>('http://localhost:8080/api/park');
+    return parks;
   }
 }
 
-interface GetResponse {
-  _embedded: {
-    parks: Park[];
-  }
+export class ParkModel {
+  id?: number;
+  parkName?: string;
+  location?: string;
+  openDate?: Date;
 }

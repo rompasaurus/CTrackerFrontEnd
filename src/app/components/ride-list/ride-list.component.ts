@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Ride } from 'src/app/common/ride';
-import { RideService } from 'src/app/services/ride.service';
+import { RideModel, RideService } from 'src/app/services/ride.service';
 
 @Component({
   selector: 'app-ride-list',
@@ -8,7 +8,7 @@ import { RideService } from 'src/app/services/ride.service';
   styleUrls: ['./ride-list.component.css']
 })
 export class RideListComponent implements OnInit {
-  rides!: Ride[];
+  rides!: RideModel[];
   constructor(private rideService: RideService) { }
 
   ngOnInit(): void {
@@ -16,9 +16,12 @@ export class RideListComponent implements OnInit {
   }
 
   pullRideListData(){
-    this.rideService.getRideList().subscribe(
+    this.rideService.getAllRides().subscribe(
       data => {
         this.rides = data;
+        this.rides.forEach(element => {
+          console.log(element);
+        });
       }
     )
   }
