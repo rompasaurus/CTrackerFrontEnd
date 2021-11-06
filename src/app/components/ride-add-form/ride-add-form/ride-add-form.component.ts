@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 export class RideAddFormComponent implements OnInit {
   rideAddForm!: FormGroup;
   isError!: boolean;
-  registerSuccessMessage!: string;
   rideModel!: RideModel;
 
 
@@ -26,7 +25,7 @@ export class RideAddFormComponent implements OnInit {
       description: new FormControl('', Validators.required),
       firstRode: new FormControl('', Validators.required),
       lastRode: new FormControl('', Validators.required),
-      park: new FormControl('', Validators.required)
+      parkId: new FormControl('', Validators.required)
     });
   }
   addRide(){
@@ -35,7 +34,7 @@ export class RideAddFormComponent implements OnInit {
     this.rideModel.description = this.rideAddForm.get('description').value;
     this.rideModel.firstRode = this.rideAddForm.get('firstRode').value;
     this.rideModel.lastRode = this.rideAddForm.get('lastRode').value;
-    this.rideModel.park = this.rideAddForm.get('park').value;
+    this.rideModel.parkId = this.rideAddForm.get('parkId').value;
     console.log("adding park model: ",this.rideModel);
     this.rideService.addRide(this.rideModel)
       .subscribe(data => {

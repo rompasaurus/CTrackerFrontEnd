@@ -12,7 +12,6 @@ import { ParkModel, ParkService } from 'src/app/services/park/park.service';
 export class ParkAddFormComponent implements OnInit {
   parkAddForm!: FormGroup;
   isError!: boolean;
-  registerSuccessMessage!: string;
   parkmodel!: ParkModel;
 
 
