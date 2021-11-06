@@ -15,6 +15,11 @@ export class ParkService {
     let parks = this.httpClient.get<Array<ParkModel>>('http://localhost:8080/api/park');
     return parks;
   }
+  addPark(park:ParkModel){
+    console.log("Adding Park: ",park.parkName, "Location: ", park.location);
+    let parkPost = this.httpClient.post('http://localhost:8080/api/park/', park);
+     return parkPost
+  }
 }
 
 export class ParkModel {

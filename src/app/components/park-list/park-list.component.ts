@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Park } from 'src/app/common/park';
-import { ParkModel, ParkService } from 'src/app/services/park.service';
+import { ParkModel, ParkService } from 'src/app/services/park/park.service';
 
 @Component({
   selector: 'app-park-list',

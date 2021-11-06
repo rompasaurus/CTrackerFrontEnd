@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Ride } from './common/ride';
 import { ParkListComponent } from './components/park-list/park-list.component';
 import { RideListComponent } from './components/ride-list/ride-list.component';
-import { ParkService } from './services/park.service';
-import { RideService } from './services/ride.service';
+import { ParkService } from './services/park/park.service';
+import { RideService } from './services/ride/ride.service';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WelcomeComponent } from './components/welcome/welcome.component';
@@ -18,6 +17,8 @@ import { TokenInterceptor } from './token-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './components/signup/signup.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ParkAddFormComponent } from './components/park-add-form/park-add-form/park-add-form.component';
+import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/ride-add-form.component';
 
 
 
@@ -30,7 +31,9 @@ import { HeaderComponent } from './components/header/header.component';
     WelcomeComponent,
     SignupComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    ParkAddFormComponent,
+    RideAddFormComponent
   ],
   imports: [
     BrowserModule,
