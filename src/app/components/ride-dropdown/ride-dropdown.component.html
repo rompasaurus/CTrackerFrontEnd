@@ -1,0 +1,6 @@
+<div class="parkSelect">
+    <select class="mdb-select md-form" name="selectedPark" searchable="Search here..">
+        <option value="" disabled selected>Amusement Parks:</option>
+        <option [value]="park" *ngFor="let park of parks">{{park.parkName}}</option>
+      </select>
+  </div>
