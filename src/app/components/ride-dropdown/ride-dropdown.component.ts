@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Park } from 'src/app/common/park';
 import { ParkModel, ParkService } from 'src/app/services/park/park.service';
 
 @Component({
-  selector: 'app-park-list',
-  templateUrl: './park-list.component.html',
-  styleUrls: ['./park-list.component.css']
+  selector: 'app-ride-dropdown',
+  templateUrl: './ride-dropdown.component.html',
+  styleUrls: ['./ride-dropdown.component.css']
 })
-export class ParkListComponent implements OnInit {
-  parks!: ParkModel[];
-  
+export class RideDropdownComponent implements OnInit {
+  parks!:ParkModel[];
+  @Input() park!: ParkModel;
+
   constructor(private parkService: ParkService) { }
 
   ngOnInit(): void {
     this.pullParkListData();
   }
-
+  
   pullParkListData(){
     this.parkService.getParkListSortedByName().subscribe(
       data => {
@@ -25,5 +27,8 @@ export class ParkListComponent implements OnInit {
       }
     )
   }
-
 }
+function input() {
+  throw new Error('Function not implemented.');
+}
+

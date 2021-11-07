@@ -16,7 +16,7 @@ export class RideListComponent implements OnInit {
   }
 
   pullRideListData(){
-    this.rideService.getAllRides().subscribe(
+    this.rideService.getAllRidesSortedByRideName().subscribe(
       data => {
         this.rides = data;
         this.rides.forEach(element => {
