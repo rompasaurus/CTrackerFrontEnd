@@ -19,6 +19,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ParkAddFormComponent } from './components/park-add-form/park-add-form/park-add-form.component';
 import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/ride-add-form.component';
+import { RideDropdownComponent } from './components/ride-dropdown/ride-dropdown.component';
+import { ParkDropdownComponent } from './components/park-dropdown/park-dropdown.component';
 
 
 
@@ -33,7 +35,9 @@ import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/r
     LoginComponent,
     HeaderComponent,
     ParkAddFormComponent,
-    RideAddFormComponent
+    RideAddFormComponent,
+    RideDropdownComponent,
+    ParkDropdownComponent
   ],
   imports: [
     BrowserModule,
