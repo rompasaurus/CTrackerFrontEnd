@@ -1,0 +1,5 @@
+<p>my-ride-list works!</p>
+<p>my-ride-list works!</p>
+<p *ngFor="let myRide of myRides">
+    Ride: {{myRide.ride.name}} Times Rode: {{ myRide.timesRode}} Park: {{ myRide.park.parkName}}  First Rode: {{ myRide.firstRode | date: 'short' }} Last Rode: {{ myRide.lastRode | date: 'short' }} 
+</p>

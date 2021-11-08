@@ -61,7 +61,7 @@
                             <label for="parkId" class="col-md-4 col-form-label text-md-right">Park</label>
                             <div class="col-md-6">
                                 <!-- <input type="number" id="parkId" class="form-control" [formControlName]="'parkId'" name="parkId" required> -->
-                                <app-park-dropdown [formControlName]="'parkId'" (parkSelected)="onParkSelected($event)"></app-park-dropdown>
+                                <app-park-dropdown (parkSelected)="onParkSelected($event)"></app-park-dropdown>
                                 <!-- <span *ngIf="!rideAddForm.get('parkId').valid && rideAddForm.get('parkId').touched">
                                     Park cannot be empty
                                 </span>                                 -->

@@ -21,6 +21,9 @@ import { ParkAddFormComponent } from './components/park-add-form/park-add-form/p
 import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/ride-add-form.component';
 import { RideDropdownComponent } from './components/ride-dropdown/ride-dropdown.component';
 import { ParkDropdownComponent } from './components/park-dropdown/park-dropdown.component';
+import { MyRideListComponent } from './components/my-ride-list/my-ride-list.component';
+import { MyRideAddFormComponent } from './components/my-ride-add-form/my-ride-add-form.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -37,7 +40,10 @@ import { ParkDropdownComponent } from './components/park-dropdown/park-dropdown.
     ParkAddFormComponent,
     RideAddFormComponent,
     RideDropdownComponent,
-    ParkDropdownComponent
+    ParkDropdownComponent,
+    MyRideListComponent,
+    MyRideAddFormComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

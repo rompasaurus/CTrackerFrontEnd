@@ -1,0 +1,118 @@
+<p>my-ride-add-form works!</p>
+<div class="rideAdd-section">
+    <div class="row justify-content-center">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header" style="text-align: center"><h4>Add a Ride to your List</h4></div>
+                <div class="card-body">
+                    <form [formGroup]="myRideAddForm" (ngSubmit)="addRide()">
+                        <div class="form-group row">
+                            <label for="rideId" class="col-md-4 col-form-label text-md-right">Ride Name rideId</label>
+                            <div class="col-md-6">
+                                <input type="text" id="rideId" class="form-control" [formControlName]="'rideId'" name="rideId" required
+                                    autofocus>
+                                <span class="formError" *ngIf="!myRideAddForm.get('rideId').valid && myRideAddForm.get('rideId').touched">
+                                   Please provide a valid Ride Name
+                                </span>                                    
+                            </div>
+                        </div>
+ 
+                        <div class="form-group row">
+                            <label for="timesRode" class="col-md-4 col-form-label text-md-right">timesRode</label>
+                            <div class="col-md-6">
+                                <input type="number" id="timesRode" class="form-control" [formControlName]="'timesRode'" name="timesRode" required>
+                                <span class="formError" *ngIf="!myRideAddForm.get('timesRode').valid && myRideAddForm.get('timesRode').touched">
+                                    timesRode cannot be empty
+                                </span>                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="rankInPark" class="col-md-4 col-form-label text-md-right">rankInPark</label>
+                            <div class="col-md-6">
+                                <input type="number" id="rankInPark" class="form-control" [formControlName]="'rankInPark'" name="rankInPark" required>
+                                <span class="formError" *ngIf="!myRideAddForm.get('rankInPark').valid && myRideAddForm.get('rankInPark').touched">
+                                    rankInPark cannot be empty
+                                </span>                                
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="rankOverall" class="col-md-4 col-form-label text-md-right">rankOverall</label>
+                            <div class="col-md-6">
+                                <input type="number" id="rankOverall" class="form-control" [formControlName]="'rankOverall'" name="rankOverall" required>
+                                <span class="formError" *ngIf="!myRideAddForm.get('rankOverall').valid && myRideAddForm.get('rankOverall').touched">
+                                    rankOverall cannot be empty
+                                </span>                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="rating" class="col-md-4 col-form-label text-md-right">rating</label>
+                            <div class="col-md-6">
+                                <input type="number" id="firstRode" class="form-control" [formControlName]="'rating'" name="rating" required>
+                                <span class="formError" *ngIf="!myRideAddForm.get('rating').valid && myRideAddForm.get('rating').touched">
+                                    ratingcannot be empty
+                                </span>                                
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstRode" class="col-md-4 col-form-label text-md-right">firstRode</label>
+                            <div class="col-md-6">
+                                <input type="date" id="firstRode" class="form-control" [formControlName]="'firstRode'" name="firstRode" required>
+                                <span class="formError" *ngIf="!myRideAddForm.get('firstRode').valid && myRideAddForm.get('firstRode').touched">
+                                    firstRode cannot be empty
+                                </span>                                
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="lastRode" class="col-md-4 col-form-label text-md-right">Last Rode</label>
+                            <div class="col-md-6">
+                                <input type="date" id="lastRode" class="form-control" [formControlName]="'lastRode'" name="lastRode" required>
+                                <span class="formError" *ngIf="!myRideAddForm.get('lastRode').valid && myRideAddForm.get('lastRode').touched">
+                                    Last Rode cannot be empty
+                                </span>                                
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="form-group row">
+                            <label for="parkId" class="col-md-4 col-form-label text-md-right">Park</label>
+                            <div class="col-md-6">
+                                <input type="number" id="parkId" class="form-control" [formControlName]="'parkId'" name="parkId" required>
+                                <span *ngIf="!myRideAddForm.get('parkId').valid && myRideAddForm.get('parkId').touched">
+                                    Park cannot be empty
+                                </span>                                
+                            </div>
+                        </div> -->
+                        <div class="form-group row">
+                            <label for="parkId" class="col-md-4 col-form-label text-md-right">Park</label>
+                            <div class="col-md-6">
+                                <!-- <input type="number" id="parkId" class="form-control" [formControlName]="'parkId'" name="parkId" required> -->
+                                <app-park-dropdown  (parkSelected)="onParkSelected($event)"></app-park-dropdown>
+                                <!-- <span *ngIf="!myRideAddForm.get('parkId').valid && myRideAddForm.get('parkId').touched">
+                                    Park cannot be empty
+                                </span>                                 -->
+                                <span class="formError" *ngIf="!myRideAddForm.get('parkId').valid && myRideAddForm.get('parkId').touched">
+                                    Park cannot be empty
+                                </span> 
+                            </div>
+                        </div>
+ 
+                        <span class="col-md-6 offset-md-4">
+                            <button type="submit" class="addPark">
+                                Add Ride
+                            </button>
+                        </span>   
+                        <div class="submit-failed" *ngIf='this.isError'>
+                             <p class="login-failed-text">Cannot Add Ride FIX IT</p>   
+                        </div>
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

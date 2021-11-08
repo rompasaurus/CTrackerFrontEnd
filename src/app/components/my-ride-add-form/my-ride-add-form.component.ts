@@ -1,0 +1,70 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { MyRideModel, MyRideService } from 'src/app/services/myRide/my-ride.service';
+import { ParkModel } from 'src/app/services/park/park.service';
+import { RideModel, RideService } from 'src/app/services/ride/ride.service';
+
+@Component({
+  selector: 'app-my-ride-add-form',
+  templateUrl: './my-ride-add-form.component.html',
+  styleUrls: ['./my-ride-add-form.component.css']
+})
+export class MyRideAddFormComponent implements OnInit {
+    myRideAddForm!: FormGroup;
+    isError!: boolean;
+    myRideModel!: MyRideModel;
+    parkSelect!:ParkModel;
+  
+  
+    constructor(private myRideService: MyRideService, private activatedRoute: ActivatedRoute,
+      private router: Router, private toastr: ToastrService, private authService: AuthService) { }
+  
+    ngOnInit(){
+      this.myRideAddForm = new FormGroup({
+        rideId: new FormControl('', Validators.required),
+        timesRode: new FormControl('', Validators.required),
+        firstRode: new FormControl('', Validators.required),
+        lastRode: new FormControl('', Validators.required),
+        rankInPark: new FormControl('', Validators.required),
+        rankOverall: new FormControl('', Validators.required),
+        rating: new FormControl('', Validators.required),
+        parkId: new FormControl('', Validators.required)
+      });
+    }
+    onParkSelected(park:ParkModel){
+      this.parkSelect = park;
+      this.myRideAddForm.get('parkId')?.setValue(this.parkSelect.id);
+    }
+    addRide(){
+      console.log("park selected: ",this.parkSelect);
+      console.log("rideAddForm: ",this.myRideAddForm);
+      this.myRideAddForm.markAllAsTouched(); 
+      if(this.myRideAddForm.status == "VALID"){
+        this.myRideModel = new RideModel();
+        this.myRideModel.userName = this.authService.getUserName();
+        this.myRideModel.rideId = this.myRideAddForm.get('rideId').value;
+        this.myRideModel.timesRode = this.myRideAddForm.get('timesRode').value;
+        this.myRideModel.firstRode = this.myRideAddForm.get('firstRode').value;
+        this.myRideModel.lastRode = this.myRideAddForm.get('lastRode').value;
+        this.myRideModel.rankInPark = this.myRideAddForm.get('rankInPark').value;
+        this.myRideModel.rankOverall = this.myRideAddForm.get('rankOverall').value;
+        this.myRideModel.rating = this.myRideAddForm.get('rating').value;
+        this.myRideModel.parkId = this.parkSelect.id;
+        console.log("adding ride model: ",this.myRideModel);
+        this.myRideService.addRide(this.myRideModel)
+          .subscribe(data => {
+            this.router.navigate(['/rides']);
+          }, error => {
+            console.log(error);
+            this.toastr.error('Park Failed to add please try again');
+          });
+      }else{
+  
+      }
+    }
+  
+  }
+  
