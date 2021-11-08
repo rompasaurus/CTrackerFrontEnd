@@ -11,11 +11,15 @@ import { ParkModel } from '../park/park.service';
 })
 export class RideService {
   private baseUrl = BASE_URL;
-
+  
   constructor(private httpClient: HttpClient) { }
-
-  getAllRides(): Observable<Array<RideModel>> {
+  
+  getAllRides(): Observable<RideModel[]> {
     return this.httpClient.get<Array<RideModel>>(this.baseUrl + '/api/ride');
+  }
+  getAllRidesByPark(parkId:number):Observable<RideModel[]> {
+    return this.httpClient.get<Array<RideModel>>(this.baseUrl + '/api/ride/'+ parkId).pipe(
+      map(results => results.sort((x,y) => x.name?.toUpperCase() < y.name?.toUpperCase() ? -1 : 1)));
   }
   getAllRidesSortedByRideName(): Observable<RideModel[]> {
     return this.httpClient.get<Array<RideModel>>(this.baseUrl + '/api/ride').pipe(

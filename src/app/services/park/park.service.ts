@@ -3,19 +3,27 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BASE_URL } from 'src/app/app.constants';
 import { map } from 'rxjs/operators';
+import { RideModel } from '../ride/ride.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParkService {
   private baseUrl = BASE_URL;
-
+  
   constructor(private httpClient: HttpClient) { }
-
+  
   getParkList(): Observable<ParkModel[]> {
     console.log("getting park list");
     let parks = this.httpClient.get<Array<ParkModel>>(this.baseUrl + '/api/park');
     return parks;
+  }
+  getParkByRide(rideId:number) {
+    let park = this.httpClient.get<ParkModel>(this.baseUrl + '/api/park/byRide/' + rideId);
+    return park;
+  }
+  getParkByRideObject(ride: RideModel): ParkModel {
+    return ride.park;
   }
   getParkListSortedByName(): Observable<ParkModel[]> {
     return this.httpClient.get<Array<ParkModel>>(this.baseUrl + '/api/park').pipe(

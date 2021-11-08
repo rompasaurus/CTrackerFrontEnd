@@ -1,6 +1,7 @@
 <div [formGroup]="parkSelect" class="parkSelect">
     <select class="mdb-select md-form" class="form-control" [formControlName]="'parkControl'" (change)=updateSelectedPark() searchable="Search here..">
-        <option disabled selected>Amusement Parks:</option>
+        <option value="" disabled selected>Amusement Parks:</option>
+        <option></option>
         <option *ngFor="let park of parks" [ngValue]="park">{{park.parkName}}</option>
       </select>
   </div>

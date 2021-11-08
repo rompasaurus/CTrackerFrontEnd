@@ -1,14 +1,16 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, Directive, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ParkModel, ParkService } from 'src/app/services/park/park.service';
 
 @Component({
   selector: 'app-park-dropdown',
   templateUrl: './park-dropdown.component.html',
-  styleUrls: ['./park-dropdown.component.css']
+  styleUrls: ['./park-dropdown.component.css'],
 })
 export class ParkDropdownComponent implements OnInit {
+
   parks!:ParkModel[];
+  @Input() rideId!: number;
   @Output() parkSelected = new EventEmitter<ParkModel>();
   parkSelect!: FormGroup;
 
@@ -20,16 +22,39 @@ export class ParkDropdownComponent implements OnInit {
       parkControl : new FormControl('')
     })
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.pullParkListData();
+  }
+
+  set(park: ParkModel) {
+    console.log("Setting park value: ",park);
+    this.parkSelect.get('parkControl')?.setValue(park);
+  }
   
   pullParkListData(){
-    this.parkService.getParkListSortedByName().subscribe(
-      data => {
-        this.parks = data;
-        this.parks.forEach(element => {
-          console.log(element);
-        });
-      }
-    )
+    if(this.rideId){
+      console.log("pulling park data rideId: ", this.rideId)
+      this.parkService.getParkByRide(this.rideId).subscribe(
+        data => {
+          this.parks = [];
+          this.set(data);
+          this.parks.push(data);
+          this.parks.forEach(element => {
+            console.log(element);
+          });
+        }
+      )
+    }else{
+      this.parkService.getParkListSortedByName().subscribe(
+        data => {
+          this.parks = data;
+          this.parks.forEach(element => {
+            console.log(element);
+          });
+        }
+      )
+    }
   }
 
   updateSelectedPark(){

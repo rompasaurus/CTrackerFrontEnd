@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Ride } from 'src/app/common/ride';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { MyRideModel, MyRideService } from 'src/app/services/myRide/my-ride.service';
 import { ParkModel } from 'src/app/services/park/park.service';
 import { RideModel, RideService } from 'src/app/services/ride/ride.service';
+import { ParkDropdownComponent } from '../park-dropdown/park-dropdown.component';
 
 @Component({
   selector: 'app-my-ride-add-form',
   templateUrl: './my-ride-add-form.component.html',
-  styleUrls: ['./my-ride-add-form.component.css']
+  styleUrls: ['./my-ride-add-form.component.css'],
 })
 export class MyRideAddFormComponent implements OnInit {
     myRideAddForm!: FormGroup;
     isError!: boolean;
     myRideModel!: MyRideModel;
     parkSelect!:ParkModel;
+    rideSelect !: RideModel;
+    @ViewChild('parkDropdown') parkDropdown!: ParkDropdownComponent;
   
   
     constructor(private myRideService: MyRideService, private activatedRoute: ActivatedRoute,
@@ -37,6 +41,11 @@ export class MyRideAddFormComponent implements OnInit {
     onParkSelected(park:ParkModel){
       this.parkSelect = park;
       this.myRideAddForm.get('parkId')?.setValue(this.parkSelect.id);
+    }
+    onRideSelected(ride:RideModel){
+      this.rideSelect = ride;
+      //this.parkDropdown.set(ride.park)
+      this.myRideAddForm.get('rideId')?.setValue(this.rideSelect.id);
     }
     addRide(){
       console.log("park selected: ",this.parkSelect);
@@ -62,7 +71,7 @@ export class MyRideAddFormComponent implements OnInit {
             this.toastr.error('Park Failed to add please try again');
           });
       }else{
-  
+        this.toastr.error('This form is missing something not sure what by you should figure it out');
       }
     }
   
