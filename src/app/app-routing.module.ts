@@ -9,6 +9,7 @@ import { MyRideListComponent } from './components/my-ride-list/my-ride-list.comp
 import { ParkAddFormComponent } from './components/park-add-form/park-add-form/park-add-form.component';
 import { ParkListComponent } from './components/park-list/park-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.component';
 import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/ride-add-form.component';
 import { RideListComponent } from './components/ride-list/ride-list.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -17,6 +18,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 const routes: Routes = [
   { path: '', component: WelcomeComponent  },//canActivate, RouteGuardService
   { path: 'welcome', component: WelcomeComponent},
+  { path: 'scrape', component: RcdbScrapeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'parks', component: ParkListComponent, canActivate:[AuthGuard]},
   { path: 'rides', component: RideListComponent, canActivate:[AuthGuard] },

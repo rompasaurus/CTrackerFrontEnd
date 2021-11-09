@@ -24,6 +24,7 @@ import { ParkDropdownComponent } from './components/park-dropdown/park-dropdown.
 import { MyRideListComponent } from './components/my-ride-list/my-ride-list.component';
 import { MyRideAddFormComponent } from './components/my-ride-add-form/my-ride-add-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.component';
 
 
 
@@ -43,7 +44,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     ParkDropdownComponent,
     MyRideListComponent,
     MyRideAddFormComponent,
-    ProfileComponent
+    ProfileComponent,
+    RcdbScrapeComponent
   ],
   imports: [
     BrowserModule,
