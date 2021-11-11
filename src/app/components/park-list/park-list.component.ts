@@ -16,11 +16,12 @@ export class ParkListComponent implements OnInit {
   }
 
   pullParkListData(){
+    console.log("Pulling Park List Data ");
     this.parkService.getParkListSortedByName().subscribe(
       data => {
         this.parks = data;
         this.parks.forEach(element => {
-          console.log(element);
+          //console.log(element);
         });
       }
     )

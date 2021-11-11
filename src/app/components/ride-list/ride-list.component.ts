@@ -16,11 +16,12 @@ export class RideListComponent implements OnInit {
   }
 
   pullRideListData(){
+    console.log("pullRideListData Gettind all ridess ");
     this.rideService.getAllRidesSortedByRideName().subscribe(
       data => {
         this.rides = data;
         this.rides.forEach(element => {
-          console.log(element);
+          //console.log(element);
         });
       }
     )

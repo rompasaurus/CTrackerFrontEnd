@@ -15,11 +15,12 @@ export class MyRideListComponent implements OnInit {
     this.pullMyRideListData();
   }
   pullMyRideListData(){
+    console.log("Pulling ride list data ");
     this.myRideService.getAllRides(this.authService.getUserName()).subscribe(
       data => {
         this.myRides = data;
         this.myRides.forEach(element => {
-          console.log(element);
+          //console.log(element);
         });
       }
     )

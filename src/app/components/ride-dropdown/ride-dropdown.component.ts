@@ -30,12 +30,13 @@ export class RideDropdownComponent implements OnInit {
   }
   
   pullRideListData(){
+    console.log("Pulling Ride List Data ParkID: ",this.parkId);
     if(this.parkId){
       this.rideService.getAllRidesByPark(this.parkId).subscribe(
         data => {
           this.rides = data;
           this.rides.forEach(element => {
-            console.log(element);
+            //console.log(element);
           });
         }
       )
@@ -44,7 +45,7 @@ export class RideDropdownComponent implements OnInit {
         data => {
           this.rides = data;
           this.rides.forEach(element => {
-            console.log(element);
+            //onsole.log(element);
           });
         }
       )

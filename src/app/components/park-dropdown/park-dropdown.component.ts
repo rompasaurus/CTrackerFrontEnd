@@ -41,7 +41,7 @@ export class ParkDropdownComponent implements OnInit {
           this.set(data);
           this.parks.push(data);
           this.parks.forEach(element => {
-            console.log(element);
+            //console.log(element);
           });
         }
       )
@@ -50,7 +50,7 @@ export class ParkDropdownComponent implements OnInit {
         data => {
           this.parks = data;
           this.parks.forEach(element => {
-            console.log(element);
+            //console.log(element);
           });
         }
       )
