@@ -16,5 +16,8 @@ export class RcdbScrapeComponent implements OnInit {
     let data = this.rcdbScraper.scrapePageData(26800);
     console.log(data);
   }
+  extractTitleData(){
+    this.rcdbScraper.extractTitleData();
+  }
 
 }

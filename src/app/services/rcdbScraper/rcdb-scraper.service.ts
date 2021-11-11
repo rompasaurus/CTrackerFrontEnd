@@ -7,6 +7,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class RcdbScraperService {
+
   dataDump!: string;
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,12 @@ export class RcdbScraperService {
   savePageData(id:number, data:string){
     console.log("adding page: ",id," data: ", data)
     let response = this.http.post(BASE_URL+'/api/rcdb/page/'+id,data).subscribe();
+    console.log(response);
+  }
+
+  extractTitleData() {
+    console.log("Sent extraction request")
+    let response = this.http.get(BASE_URL+'/api/rcdb/extractTitles').subscribe();
     console.log(response);
   }
 
