@@ -11,6 +11,9 @@ export class ParkDropdownComponent implements OnInit {
 
   parks!:ParkModel[];
   @Input() rideId!: number;
+  @Input() city!: string;
+  @Input() state!: string;
+  @Input() country!: string;
   @Output() parkSelected = new EventEmitter<ParkModel>();
   parkSelect!: FormGroup;
 
@@ -45,13 +48,31 @@ export class ParkDropdownComponent implements OnInit {
           });
         }
       )
+    }else if(this.city){
+      console.log("pulling park data city: ", this.city)
+      this.parkService.getParkByCity(this.city).subscribe(
+        data => {
+          this.parks = data;
+        }
+      )
+    }else if(this.state){
+      console.log("pulling park data state: ", this.state)
+      this.parkService.getParkByState(this.state).subscribe(
+        data => {
+          this.parks = data;
+        }
+      )
+    }else if(this.country){
+      console.log("pulling park data country: ", this.state)
+      this.parkService.getParkByCountry(this.country).subscribe(
+        data => {
+          this.parks = data;
+        }
+      )
     }else{
       this.parkService.getParkListSortedByName().subscribe(
         data => {
           this.parks = data;
-          this.parks.forEach(element => {
-            //console.log(element);
-          });
         }
       )
     }

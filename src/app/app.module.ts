@@ -25,6 +25,9 @@ import { MyRideListComponent } from './components/my-ride-list/my-ride-list.comp
 import { MyRideAddFormComponent } from './components/my-ride-add-form/my-ride-add-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.component';
+import { CountryDropdownComponent } from './components/country-dropdown/country-dropdown.component';
+import { CityDropdownComponent } from './components/city-dropdown/city-dropdown.component';
+import { StateDropdownComponent } from './components/state-dropdown/state-dropdown.component';
 
 
 
@@ -45,7 +48,10 @@ import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.compon
     MyRideListComponent,
     MyRideAddFormComponent,
     ProfileComponent,
-    RcdbScrapeComponent
+    RcdbScrapeComponent,
+    CountryDropdownComponent,
+    CityDropdownComponent,
+    StateDropdownComponent
   ],
   imports: [
     BrowserModule,

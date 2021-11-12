@@ -20,7 +20,9 @@ export class MyRideAddFormComponent implements OnInit {
     myRideModel!: MyRideModel;
     parkSelect!:ParkModel;
     rideSelect !: RideModel;
-    @ViewChild('parkDropdown') parkDropdown!: ParkDropdownComponent;
+    citySelect!: string;
+    countrySelect!: string;
+    stateSelect!: string;
   
   
     constructor(private myRideService: MyRideService, private activatedRoute: ActivatedRoute,
@@ -28,6 +30,9 @@ export class MyRideAddFormComponent implements OnInit {
   
     ngOnInit(){
       this.myRideAddForm = new FormGroup({
+        country : new FormControl(''),
+        city : new FormControl(''),
+        state : new FormControl(''),
         rideId: new FormControl('', Validators.required),
         timesRode: new FormControl('', Validators.required),
         firstRode: new FormControl('', Validators.required),
@@ -44,8 +49,19 @@ export class MyRideAddFormComponent implements OnInit {
     }
     onRideSelected(ride:RideModel){
       this.rideSelect = ride;
-      //this.parkDropdown.set(ride.park)
       this.myRideAddForm.get('rideId')?.setValue(this.rideSelect.id);
+    }
+    onCitySelected(city:string){
+      this.citySelect = city;
+      this.myRideAddForm.get('city')?.setValue(this.citySelect);
+    }
+    onCountrySelected(country:string){
+      this.countrySelect = country;
+      this.myRideAddForm.get('country')?.setValue(this.countrySelect);
+    }
+    onStateSelected(state:string){
+      this.stateSelect = state;
+      this.myRideAddForm.get('stateSelect')?.setValue(this.stateSelect);
     }
     addRide(){
       console.log("park selected: ",this.parkSelect);
