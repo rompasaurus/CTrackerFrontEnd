@@ -1,0 +1,209 @@
+October 30 2021
+  Status:
+    scaffold created
+    registration work sends out validation email
+    login currently failing
+      "Http failure response for http://localhost:8080/api/rides: 0 Unknown Error"
+      maybe the api endpoint doesn't exist
+      token gets generated upon login
+
+
+November 1 2021
+  Status
+    Login and authentication work
+    the redirect page isnt setup so it errors out
+
+  Fixed:
+    routing so that upon login goes to welcome component was redirecting to login prior
+    added header component for login logout and username to show
+
+
+  To Do:
+    Setup unique jks file for pw encryption
+    setup actual mailserver to send out confirm emails
+    Setup up a service to pull rides from backend
+
+November 2 2021
+  Status
+    redirect page fixed set to welcome page
+    park and ride components and services set to the right api endpoints and use correct models
+      dates are very weird though
+    park and ride controllers services and repos setup and provide date to frontend
+    the site pulls date from the db i can see parks and rides this shit is dope
+    endpoint auth configure for new api controllers allowing all parks and rides to be viewed without authorization
+
+  To Do's
+    setup jks failure
+    mail server setup
+    add a form to add a ride
+    begin planning the style of the site
+
+November 4 2021
+  Status
+    Setup JKS Key via keytool java commandline tool
+      Command:
+        keytool -genkey -alias CTracker -keyalg RSA -keystore CtrackerKey.jks
+    Created add park form and wired to backend
+
+November 5 2021
+  Status
+    Create add ride form, service, and backend components
+      issue:  park id is not mapping correctly
+      variable name mismatch corrected that and no ishes so far woo
+
+November 6 2021
+  Status
+    setup smtp server on dook using postfix configured project to pass emails through there
+      in future remember out the box postfix needs ports open and service enable to
+      start on reboot and config file changed to allow email relay from within the network
+    Set constant variables in angular for the base url and set the services to use the value so that external user can access the appropriate
+    api endpoint address not... localhost
+
+    fixed add ride form can add rides still need to flesh out a dropdown to choose from existing parks
+    added more cors address to spring to allow external connections
+
+November 7 2021
+  Status
+    added park dropdown populated with existing parks to add ride terraform
+    fixed date formating
+    added sorting to park and ride lists services
+    add myRIde component and table tested preliminary functions
+
+November 8 2021
+  Status
+    MyRides FOrm with prefille ride and park dropdowns
+    began scrapping rcdb
+      ran into issues with cors and http requests
+      setup https://github.com/Rob--W/cors-anywhere/ cors anywhere proxy to bypass this
+        change the requireHeader in server.js to be nothing > bad idea on prod server for my case Fine
+        created rcdb scraper to pull the data from the site and save as a text file
+        dumped all rcdb site data into a db table for future use.
+
+November 9 2021
+  started parsing rcdb site data
+
+  Status migrated mysql to the dook
+    installed mysql via:
+      yum install mysql
+    ran setup:
+      sudo mysql_secure_installation
+      set admin password
+    enabled mysql for start at reboot
+      systemctl mysql enable
+    opened up firewall
+      firewall-cmd --add-service mysql
+    created ctracker user account with permission:
+      mysql -u root -p
+      CREATE USER 'ctracker'@'localhost' IDENTIFIED BY 'Bigmac12!';
+      GRANT ALL PRIVILEGES ON *.* TO 'ctracker'@'localhost' WITH GRANT OPTION;
+      CREATE USER 'ctracker'@'%' IDENTIFIED BY 'Bigmac12!';
+      GRANT ALL PRIVILEGES ON *.* TO 'ctracker'@'%' WITH GRANT OPTION;
+
+    Deployed frontent to dook
+      setup httpd to host angular
+          yum install httpd
+      Opened firewall for http(s) traffic
+          firewall-cmd --permanent --zone=public --add-service=http
+          firewall-cmd --permanent --zone=public --add-service=https
+          firewall-cmd --reload
+      from dev machine built angular codebase
+        ng build or ng build — prod
+        Copy the dist folder to the following location /var/www/html/ of centos
+          scp -r /Users/michaelmchenry/Documents/CTrackerFrontEnd/dist/CTrackerFrontEnd/*  root@192.168.0.130:/var/www/html/
+
+      .htaaccess file needs added to the /www/html/ root to allow routes to work
+          <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteBase /
+            RewriteRule ^index\.html$ - [L]
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . /index.html [L]
+          </IfModule>
+      htaccess needs to be enabled with AllowOverride
+        /etc/httpd/conf/httpd.conf > enable override
+          change from AllowOverride none to AllowOverride All
+          restart httpd
+      Added domain to spring allowed origins
+      Setup ssl
+        remember to forward port 443!!!!!
+        installed cert bot
+        https://certbot.eff.org/lets-encrypt/centosrhel7-apache.html
+        sudo yum install mod_ssl
+        add to end of httpd.conf
+        <VirtualHost *:80>
+          ServerAdmin root@ridetally.com
+          DocumentRoot /var/www/html
+          ServerName ridetally.com
+          RewriteEngine on
+          RewriteCond %{SERVER_NAME} =ridetally.com
+          RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+        </VirtualHost>
+        generate pks12 for spring from ssl cert to all spring to work with ssl request
+          https://stackoverflow.com/questions/36991562/how-can-i-set-up-a-letsencrypt-ssl-certificate-and-use-it-in-a-spring-boot-appli
+          server.port=8443
+          server.ssl.key-store=classpath:keystore.p12
+          server.ssl.key-store-password=Bigmac12
+          #
+          ## PKCS12 or JKS
+          server.ssl.keyStoreType=PKCS12
+
+November 10 2021
+  migrated sql server to the dook and made multiple backupps
+  change app properties to connect properly
+
+  start the parse yo
+    regex to pull from title (?<=(<title>))(\w|\d|\n|[().,\-:;@#$%^&*\[\]"'+–/\/®°⁰!?{}|`~]| )+?(?=(</title>))
+    after dash
+    (?<= - ).*
+    before dash
+    .*(?= - )
+
+    merge data into the right tables
+      insert parks into park table:
+        INSERT INTO CTrackerApp.park (park_name)
+        SELECT distinct park_name FROM CTrackerApp.rcdbpage;
+
+      insert parks with proper location
+        select distinct a.park_name, city, a.state, a.country from CTrackerApp.rcdbpage a where country is not null
+
+
+      pull rides along with corresponding ids
+        SELECT a.ride, b.id FROM CTrackerApp.rcdbpage a
+        JOIN CTrackerApp.park b on a.park_name = b.park_name;
+
+      insert rides into ride table with park id
+        INSERT INTO CTrackerApp.ride (name, park_id)
+        SELECT a.ride, b.id FROM CTrackerApp.rcdbpage a
+        JOIN CTrackerApp.park b on a.park_name = b.park_name;
+
+      delete blank ride name
+        DELETE FROM CTrackerApp.ride WHERE name ='';
+        DELETE FROM CTrackerApp.ride WHERE name ='unknown';
+
+      enable user
+        UPDATE `CTrackerApp`.`user` SET `enabled` = 1 WHERE (`user_id` = '9')
+
+        translate state, city and zip
+        select distinct a.park_name, a.city, a.state, a.country from CTrackerApp.rcdbpage a
+        join CTrackerApp.park b on a.park_name = b.park_name where a.country is not null;
+
+November 11 2021
+  Cleared duplicate entries and added drop downs for city state and country
+  
+  todo:
+    wire up the backend so that dropdowns pull data
+
+Noveember 12 2021
+  Added notes to fronted 
+  detailed steps to copy data
+  troubleshot backend sql queries
+
+  Copying projects
+    Frontend:
+      ng build
+      scp -r <prject dir>/CTrackerFrontEnd/dist/CTrackerFrontEnd/*  root@192.168.0.130:/var/www/html/
+
+    Backend 
+      mvn clean install
+      scp <project dir>/CTracker/target/CTracker-0.0.1-SNAPSHOT.jar  root@192.168.0.130:/media/Dookalator/
