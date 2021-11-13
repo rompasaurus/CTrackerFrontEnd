@@ -69,13 +69,14 @@ export class ParkDropdownComponent implements OnInit {
           this.parks = data;
         }
       )
-    }else{
-      this.parkService.getParkListSortedByName().subscribe(
-        data => {
-          this.parks = data;
-        }
-      )
     }
+    // else{
+    //   this.parkService.getParkListSortedByName().subscribe(
+    //     data => {
+    //       this.parks = data;
+    //     }
+    // )
+    // }
   }
 
   updateSelectedPark(){

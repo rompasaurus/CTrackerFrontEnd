@@ -194,7 +194,7 @@ November 11 2021
   todo:
     wire up the backend so that dropdowns pull data
 
-Noveember 12 2021
+November 12 2021
   Added notes to fronted 
   detailed steps to copy data
   troubleshot backend sql queries
@@ -207,3 +207,5 @@ Noveember 12 2021
     Backend 
       mvn clean install
       scp <project dir>/CTracker/target/CTracker-0.0.1-SNAPSHOT.jar  root@192.168.0.130:/media/Dookalator/
+
+  fixed sql statements on park repository so that city state and country pull properly from front end

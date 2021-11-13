@@ -27,7 +27,7 @@ export class CityDropdownComponent implements OnInit {
   }
   
   pullCityListData(){
-    console.log("Pulling City List Data ParkID: ",this.state);
+    console.log("Pulling City List Data State: ",this.state);
     if(this.state){
       this.parkService.getAllCitiesByState(this.state).subscribe(
         data => {
@@ -37,16 +37,17 @@ export class CityDropdownComponent implements OnInit {
           });
         }
       )
-    }else{
-      this.parkService.getAllCities().subscribe(
-        data => {
-          this.cities = data;
-          this.cities.forEach(element => {
-            //onsole.log(element);
-          });
-        }
-      )
     }
+    // else{
+    //   this.parkService.getAllCities().subscribe(
+    //     data => {
+    //       this.cities = data;
+    //       this.cities.forEach(element => {
+    //         //onsole.log(element);
+    //       });
+    //     }
+    //   )
+    // }
   }
   updateSelectedCity(){
     let selectedCity = this.citySelect.get('cityControl').value;

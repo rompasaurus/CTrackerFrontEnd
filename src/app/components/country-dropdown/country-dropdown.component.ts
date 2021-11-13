@@ -30,7 +30,7 @@ export class CountryDropdownComponent implements OnInit {
         data => {
           this.countries = data;
           this.countries.forEach(element => {
-            //onsole.log(element);
+            console.log(element);
           });
         })
   }

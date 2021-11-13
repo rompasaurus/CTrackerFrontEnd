@@ -2,6 +2,6 @@
     <select class="mdb-select md-form" class="form-control" name="selectedRide"  [formControlName]="'cityControl'" (change)=updateSelectedCity() searchable="Search here..">
         <option value="" disabled selected>City:</option>
         <option></option>
-        <option [ngValue]="city" *ngFor="let city of cities">{{city}</option>
+        <option [ngValue]="city" *ngFor="let city of cities">{{city}}</option>
       </select>
   </div>
