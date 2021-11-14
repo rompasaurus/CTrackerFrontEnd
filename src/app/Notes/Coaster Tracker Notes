@@ -203,10 +203,14 @@ November 12 2021
     Frontend:
       ng build
       scp -r <prject dir>/CTrackerFrontEnd/dist/CTrackerFrontEnd/*  root@192.168.0.130:/var/www/html/
+      CTrackerFrontEnd % scp -r /Users/michaelmchenry/Documents/CTrackerFrontEnd/dist/CTrackerFrontEnd/*  root@192.168.0.130:/var/www/html/
 
     Backend 
       mvn clean install
       scp <project dir>/CTracker/target/CTracker-0.0.1-SNAPSHOT.jar  root@192.168.0.130:/media/Dookalator/
+
+      java -jar /media/Dookalator/CTracker-0.0.1-SNAPSHOT.jar 
+      scp /Users/michaelmchenry/IdeaProjects/CTracker/target/CTracker-0.0.1-SNAPSHOT.jar  root@192.168.0.130:/media/Dookalator/
 
   fixed sql statements on park repository so that city state and country pull properly from front end
 
