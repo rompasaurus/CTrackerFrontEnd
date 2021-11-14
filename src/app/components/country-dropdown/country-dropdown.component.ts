@@ -29,9 +29,9 @@ export class CountryDropdownComponent implements OnInit {
       this.parkService.getAllCountries().subscribe(
         data => {
           this.countries = data;
-          this.countries.forEach(element => {
-            console.log(element);
-          });
+          // this.countries.forEach(element => {
+          //   console.log(element);
+          // });
         })
   }
   updateSelectedCountry(){

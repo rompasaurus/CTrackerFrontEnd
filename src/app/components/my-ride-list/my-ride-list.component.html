@@ -1,5 +1,25 @@
-<p>my-ride-list works!</p>
-<p>my-ride-list works!</p>
-<p *ngFor="let myRide of myRides">
-    Ride: {{myRide.ride.name}} Times Rode: {{ myRide.timesRode}} Park: {{ myRide.park.parkName}}  First Rode: {{ myRide.firstRode | date: 'short' }} Last Rode: {{ myRide.lastRode | date: 'short' }} 
-</p>
+<div class="my-ride-list-section">
+    <div class="ride-card" *ngFor="let myRide of myRides">      
+        <div class="ride">
+            <hr>
+            <div class="row text-left">
+                <div class="col-5">
+                    <h2 id="rideName"> {{myRide.ride.name}} </h2>
+                    
+                </div>
+                <div class="col-5">
+                    <p>
+                        <b>{{ myRide.park.parkName}}, {{ myRide.park.city}}, {{ myRide.park.state}}</b> 
+                    </p>
+                    <!-- <p>First Rode: {{ myRide.firstRode | date: 'MM/dd/yyyy' }} </p> -->
+                    <p id="lastRode">Last Rode: {{ myRide.lastRode | date: 'MM/dd/yyyy' }} </p>
+                </div>
+                <div class="col-2">
+                    <h1>{{ myRide.timesRode}}</h1>
+                    <button (click)=deleteMyRide(myRide.id)>Delete</button>
+                    <!-- <a href="/delete/{{myRide.id}}">Delete</a> -->
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Ride } from 'src/app/common/ride';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { MyRideModel, MyRideService } from 'src/app/services/myRide/my-ride.service';
 
@@ -24,6 +25,12 @@ export class MyRideListComponent implements OnInit {
         });
       }
     )
+  }
+  deleteMyRide(rideId:number){
+    console.log("Delete Clicked for id: ", rideId);
+    let response = this.myRideService.deleteMyRide(rideId).subscribe();
+    window.location.reload();
+    console.log(response);
   }
 
 }

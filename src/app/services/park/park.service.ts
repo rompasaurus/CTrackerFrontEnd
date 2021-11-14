@@ -69,4 +69,7 @@ export class ParkModel {
   parkName?: string;
   location?: string;
   openDate?: Date;
+  state!: string;
+  country!:string;
+  city !:string;
 }

@@ -8,12 +8,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   username!: string;
+  toggle : boolean = false;
   constructor(private activatedRoute:ActivatedRoute) {
     this.username = this.activatedRoute.snapshot.params.username;
     console.log("activated Route username : ",this.activatedRoute.snapshot.params.username)
    }
 
   ngOnInit(): void {
+  }
+
+  toggleMyRideForm(){
+    this.toggle = !this.toggle;
   }
 
 }

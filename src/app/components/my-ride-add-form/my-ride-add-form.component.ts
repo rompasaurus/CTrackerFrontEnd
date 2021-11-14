@@ -81,7 +81,8 @@ export class MyRideAddFormComponent implements OnInit {
         console.log("adding ride model: ",this.myRideModel);
         this.myRideService.addRide(this.myRideModel)
           .subscribe(data => {
-            this.router.navigate(['/rides']);
+            //this.router.navigate(['/rides']);
+            window.location.reload();
           }, error => {
             console.log(error);
             this.toastr.error('Park Failed to add please try again');

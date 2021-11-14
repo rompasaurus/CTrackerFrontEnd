@@ -1,6 +1,6 @@
 <div [formGroup]="stateSelect" class="stateSelect">
     <select class="mdb-select md-form" class="form-control" name="selectedState"  [formControlName]="'stateControl'" (change)=updateSelectedState() searchable="Search here..">
-        <option value="" disabled selected>States:</option>
+        <option value="" disabled selected>State:</option>
         <option></option>
         <option [ngValue]="state" *ngFor="let state of states">{{state}}</option>
       </select>

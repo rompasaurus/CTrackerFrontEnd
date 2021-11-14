@@ -1,7 +1,8 @@
-
-<app-my-ride-list></app-my-ride-list>
-<a href="/addMyRide">Track a ride</a>
-<p>
-    {{username}}
-</p>
-    
+<div class="my-ride-list-section">
+    <h1> {{username}}'s rides </h1>
+    <app-my-ride-list></app-my-ride-list>
+    <button (click)="toggleMyRideForm()">Track a ride</button>
+    <div *ngIf="toggle;">
+        <app-my-ride-add-form ></app-my-ride-add-form>
+    </div>
+</div>
