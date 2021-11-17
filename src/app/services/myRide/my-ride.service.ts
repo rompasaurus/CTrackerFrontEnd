@@ -10,7 +10,6 @@ import { RideModel } from '../ride/ride.service';
   providedIn: 'root'
 })
 export class MyRideService {
-
   private baseUrl = BASE_URL;
 
   constructor(private httpClient: HttpClient) { }
@@ -35,6 +34,9 @@ export class MyRideService {
     console.log("Deleting Ride with id of: ",rideId);
     let rideDelete = this.httpClient.delete(this.baseUrl + '/api/myrides/delete/'+rideId);
     return rideDelete;
+  }
+  updateCount(myride: MyRideModel) {
+    let rideUpdate = this.httpClient.put(this.baseUrl + 'api/myrides/update/', myride);
   }
 }
 export class MyRideModel {

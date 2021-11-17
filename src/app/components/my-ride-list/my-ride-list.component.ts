@@ -32,5 +32,10 @@ export class MyRideListComponent implements OnInit {
     window.location.reload();
     console.log(response);
   }
+  addToRideCount(myRide:MyRideModel,count:number){
+    console.log("calling add to ride count with myRide: ", myRide, " Count: ", count);
+    myRide.timesRode = myRide.timesRode + count;
+    this.myRideService.updateCount(myride);
+  }
 
 }
