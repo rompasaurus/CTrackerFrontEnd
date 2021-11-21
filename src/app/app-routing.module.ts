@@ -8,6 +8,7 @@ import { MyRideAddFormComponent } from './components/my-ride-add-form/my-ride-ad
 import { MyRideListComponent } from './components/my-ride-list/my-ride-list.component';
 import { ParkAddFormComponent } from './components/park-add-form/park-add-form/park-add-form.component';
 import { ParkListComponent } from './components/park-list/park-list.component';
+import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.component';
 import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/ride-add-form.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent},
   { path: 'scrape', component: RcdbScrapeComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'reset', component: PasswordResetFormComponent },
   { path: 'parks', component: ParkListComponent, canActivate:[AuthGuard]},
   { path: 'rides', component: RideListComponent, canActivate:[AuthGuard] },
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGuard] },

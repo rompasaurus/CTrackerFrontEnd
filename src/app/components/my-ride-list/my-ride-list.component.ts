@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { Ride } from 'src/app/common/ride';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { MyRideModel, MyRideService } from 'src/app/services/myRide/my-ride.service';
@@ -10,7 +11,7 @@ import { MyRideModel, MyRideService } from 'src/app/services/myRide/my-ride.serv
 })
 export class MyRideListComponent implements OnInit {
   myRides !: MyRideModel[];
-  constructor(private myRideService: MyRideService, private authService : AuthService) { }
+  constructor(private myRideService: MyRideService,private toastr: ToastrService, private authService : AuthService) { }
 
   ngOnInit(): void {
     this.pullMyRideListData();
@@ -35,7 +36,12 @@ export class MyRideListComponent implements OnInit {
   addToRideCount(myRide:MyRideModel,count:number){
     console.log("calling add to ride count with myRide: ", myRide, " Count: ", count);
     myRide.timesRode = myRide.timesRode + count;
-    this.myRideService.updateCount(myride);
+    this.myRideService.updateCount(myRide).subscribe(data => {
+      this.toastr.success("Updated Ride count for: " + myRide.ride?.name)
+    }, error => {
+      console.log(error);
+      this.toastr.error('Your ride  Failed to update please try again');
+    });
   }
 
 }

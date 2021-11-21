@@ -85,7 +85,7 @@ export class MyRideAddFormComponent implements OnInit {
             window.location.reload();
           }, error => {
             console.log(error);
-            this.toastr.error('Park Failed to add please try again');
+            this.toastr.error('Ride Failed to add please try again');
           });
       }else{
         this.toastr.error('This form is missing something not sure what by you should figure it out');

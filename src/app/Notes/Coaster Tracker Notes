@@ -214,11 +214,19 @@ November 12 2021
 
   fixed sql statements on park repository so that city state and country pull properly from front end
 
-November 13 2021
+November 15 2021
+  add up and down ride count components
+  Setup a table to view MyRides add a delete/update  option for each row
+
+November 21 2021
+  wire in + - ride count to backend 
+  password reset form created
 
 
 To Do:
-  Setup a table to view MyRides add a delete/update  option for each row
   password reset / registration email
-  add yead data openend to ride if possible
+  add data openend to ride if possible
   make add ride interactive 1 field after the next
+  add ride by park visit dropdown
+  field validaition and feedback for user login page
+  ride count should wait until clicking stops to update or have a save button shyould never be negative

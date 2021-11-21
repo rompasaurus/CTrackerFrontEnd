@@ -28,6 +28,7 @@ import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.compon
 import { CountryDropdownComponent } from './components/country-dropdown/country-dropdown.component';
 import { CityDropdownComponent } from './components/city-dropdown/city-dropdown.component';
 import { StateDropdownComponent } from './components/state-dropdown/state-dropdown.component';
+import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
 
 
 
@@ -51,7 +52,8 @@ import { StateDropdownComponent } from './components/state-dropdown/state-dropdo
     RcdbScrapeComponent,
     CountryDropdownComponent,
     CityDropdownComponent,
-    StateDropdownComponent
+    StateDropdownComponent,
+    PasswordResetFormComponent
   ],
   imports: [
     BrowserModule,

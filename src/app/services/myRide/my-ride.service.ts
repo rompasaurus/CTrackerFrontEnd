@@ -36,7 +36,8 @@ export class MyRideService {
     return rideDelete;
   }
   updateCount(myride: MyRideModel) {
-    let rideUpdate = this.httpClient.put(this.baseUrl + 'api/myrides/update/', myride);
+    let rideUpdate = this.httpClient.post(this.baseUrl + '/api/myrides/update/', myride);
+    return rideUpdate;
   }
 }
 export class MyRideModel {
