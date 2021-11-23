@@ -29,6 +29,7 @@ import { CountryDropdownComponent } from './components/country-dropdown/country-
 import { CityDropdownComponent } from './components/city-dropdown/city-dropdown.component';
 import { StateDropdownComponent } from './components/state-dropdown/state-dropdown.component';
 import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
+import { PasswordResetEmailSetupFormComponent } from './components/password-reset-email-setup-form/password-reset-email-setup-form.component';
 
 
 
@@ -53,7 +54,8 @@ import { PasswordResetFormComponent } from './components/password-reset-form/pas
     CountryDropdownComponent,
     CityDropdownComponent,
     StateDropdownComponent,
-    PasswordResetFormComponent
+    PasswordResetFormComponent,
+    PasswordResetEmailSetupFormComponent
   ],
   imports: [
     BrowserModule,

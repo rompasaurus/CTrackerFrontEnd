@@ -31,6 +31,10 @@ export class AuthService {
     return this.httpClient.post(this.baseUrl + '/api/auth/signup', signupRequestPayload, { responseType: 'text' });
   }
 
+  sendResetEmail(email: string): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/api/auth/resetEmail', email, { responseType: 'text' });
+  }
+
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient.post<LoginResponse>(this.baseUrl + '/api/auth/login',
       loginRequestPayload).pipe(map(data => {
@@ -89,5 +93,9 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.getJwtToken() != null;
+  }
+
+  resetPassword(token:string, password:string) {
+    return this.httpClient.post(this.baseUrl + '/api/auth/password/set/' + token, password, { responseType: 'text' });
   }
 }

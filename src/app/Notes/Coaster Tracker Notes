@@ -222,11 +222,16 @@ November 21 2021
   wire in + - ride count to backend 
   password reset form created
 
+November 22 2021
+  wire up password reset form and password reset email form 
+  backend token and reset api created
+
 
 To Do:
-  password reset / registration email
+  password reset / registration errors and validations
   add data openend to ride if possible
   make add ride interactive 1 field after the next
   add ride by park visit dropdown
   field validaition and feedback for user login page
   ride count should wait until clicking stops to update or have a save button shyould never be negative
+  so much to do 
