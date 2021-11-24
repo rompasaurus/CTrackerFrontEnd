@@ -15,13 +15,17 @@ import { RcdbScrapeComponent } from './components/rcdb-scrape/rcdb-scrape.compon
 import { RideAddFormComponent } from './components/ride-add-form/ride-add-form/ride-add-form.component';
 import { RideListComponent } from './components/ride-list/ride-list.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { VisitStepperFormComponent } from './components/visit-stepper-form/visit-stepper-form.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+
+import {MatStepperModule} from '@angular/material/stepper';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent  },//canActivate, RouteGuardService
   { path: 'welcome', component: WelcomeComponent},
   { path: 'scrape', component: RcdbScrapeComponent},
   { path: 'login', component: LoginComponent },
+  { path: 'visit', component: VisitStepperFormComponent },
   { path: 'setPassword/:token', component: PasswordResetFormComponent },
   { path: 'reset', component: PasswordResetEmailSetupFormComponent },
   { path: 'parks', component: ParkListComponent, canActivate:[AuthGuard]},
@@ -38,7 +42,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -4,6 +4,11 @@ import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
+/*
+  To DO:
+    validate proper email
+*/
+
 @Component({
   selector: 'app-password-reset-email-setup-form',
   templateUrl: './password-reset-email-setup-form.component.html',

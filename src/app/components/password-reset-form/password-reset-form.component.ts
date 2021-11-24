@@ -3,6 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
+/*
+  To DO:
+    Added validation to form 
+    return descriptive errors on failure 
+    validate token before allowing form to show
+    concela password characters
+*/
 
 @Component({
   selector: 'app-password-reset-form',

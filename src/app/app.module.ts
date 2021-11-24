@@ -30,7 +30,12 @@ import { CityDropdownComponent } from './components/city-dropdown/city-dropdown.
 import { StateDropdownComponent } from './components/state-dropdown/state-dropdown.component';
 import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
 import { PasswordResetEmailSetupFormComponent } from './components/password-reset-email-setup-form/password-reset-email-setup-form.component';
-
+import { VisitStepperFormComponent } from './components/visit-stepper-form/visit-stepper-form.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatNativeDateModule } from '@angular/material/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -55,7 +60,8 @@ import { PasswordResetEmailSetupFormComponent } from './components/password-rese
     CityDropdownComponent,
     StateDropdownComponent,
     PasswordResetFormComponent,
-    PasswordResetEmailSetupFormComponent
+    PasswordResetEmailSetupFormComponent,
+    VisitStepperFormComponent
   ],
   imports: [
     BrowserModule,
@@ -65,9 +71,15 @@ import { PasswordResetEmailSetupFormComponent } from './components/password-rese
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatStepperModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    MatFormFieldModule, 
+    MatInputModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },ParkService,RideService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);
