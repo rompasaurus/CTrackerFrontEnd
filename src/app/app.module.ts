@@ -32,10 +32,12 @@ import { PasswordResetFormComponent } from './components/password-reset-form/pas
 import { PasswordResetEmailSetupFormComponent } from './components/password-reset-email-setup-form/password-reset-email-setup-form.component';
 import { VisitStepperFormComponent } from './components/visit-stepper-form/visit-stepper-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -75,10 +77,13 @@ import { MatInputModule } from '@angular/material/input';
     MatStepperModule,
     HttpClientModule,
     MatNativeDateModule,
-    MatFormFieldModule, 
-    MatInputModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatOptionModule, 
+    MatSelectModule
   ],
-  providers: [ {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },ParkService,RideService],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, ParkService, RideService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

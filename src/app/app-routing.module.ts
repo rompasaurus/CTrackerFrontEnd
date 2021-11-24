@@ -18,8 +18,6 @@ import { SignupComponent } from './components/signup/signup.component';
 import { VisitStepperFormComponent } from './components/visit-stepper-form/visit-stepper-form.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 
-import {MatStepperModule} from '@angular/material/stepper';
-
 const routes: Routes = [
   { path: '', component: WelcomeComponent  },//canActivate, RouteGuardService
   { path: 'welcome', component: WelcomeComponent},

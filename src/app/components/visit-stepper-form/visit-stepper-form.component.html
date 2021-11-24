@@ -1,56 +1,87 @@
 <div class="park-stepper">
     <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
         {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-      </button>
-      <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    </button>
+    <mat-stepper orientation="horizontal" [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="dateSelection">
+            <form [formGroup]="dateSelection">
+                <ng-template matStepLabel>When was your visit?</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
         <mat-step [stepControl]="countrySelection">
-          <form [formGroup]="countrySelection">
-            <ng-template matStepLabel>What Country was the park in</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>Country</mat-label>
-              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
+            <form [formGroup]="countrySelection">
+                <ng-template matStepLabel>What Country was the park in?</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Countries</mat-label>
+                    <mat-select [formControlName]="'countrySelection'">
+                      <mat-option   *ngFor="let country of countries" [value]="country">{{country}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext  (click)="pullStates()">Next</button>
+                </div>
+            </form>
         </mat-step>
         <mat-step [stepControl]="stateSelection">
-          <form [formGroup]="stateSelection">
-            <ng-template matStepLabel>Which State?</ng-template>
-            <mat-form-field appearance="fill">
-              <mat-label>State</mat-label>
-              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                     required>
-            </mat-form-field>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
+            <form [formGroup]="stateSelection" >
+                <ng-template matStepLabel>Which State?</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>States</mat-label>
+                    <mat-select>
+                      <mat-option [value]="state" *ngFor="let state of states">{{state}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="pullParkListData()">Next</button>
+                </div>
+            </form>
         </mat-step>
         <mat-step [stepControl]="parkSelection">
-            <form [formGroup]="parkSelection">
-              <ng-template matStepLabel>Select your park:</ng-template>
-              <mat-form-field appearance="fill">
-                <mat-label>Park</mat-label>
-                <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                       required>
-              </mat-form-field>
-              <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
-              </div>
+            <form [formGroup]="parkSelection" >
+                <ng-template matStepLabel>Select your park</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Parks</mat-label>
+                    <mat-select>
+                      <mat-option [value]="park" *ngFor="let park of parks">{{park.parkName}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
             </form>
-          </mat-step>
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          <p>You are now done.</p>
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Reset</button>
-          </div>
         </mat-step>
-      </mat-stepper>
-      
+        <mat-step [stepControl]="rideSelection">
+            <form [formGroup]="rideSelection">
+                <ng-template matStepLabel>Select the rides you rode: </ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Park</mat-label>
+                    <input matInput formControlName="rideSelection" placeholder="Ex. 1 Main St, New York, NY" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+
 </div>
