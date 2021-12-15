@@ -46,7 +46,7 @@ export class ParkService {
     return parks;
   }
   getParkByCountry(country: string) : Observable<ParkModel[]> {
-    console.log("getting park list");
+    console.log("getting park list via country: ", country);
     let parks = this.httpClient.get<Array<ParkModel>>(this.baseUrl + '/api/park/country/' + country);
     return parks;
   }

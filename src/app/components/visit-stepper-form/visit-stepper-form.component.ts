@@ -66,7 +66,8 @@ export class VisitStepperFormComponent implements OnInit {
   }
   pullParkListData(){
   this.country = this.countrySelection.get("countrySelection")?.value;
-  this.state = this.countrySelection.get("stateSelection")?.value;
+  this.state = this.stateSelection.get("stateSelection")?.value;
+  console.log("pulling State selection: ", this.state);
    if(this.state){
       console.log("pulling park data state: ", this.state)
       this.parkService.getParkByState(this.state).subscribe(
@@ -75,7 +76,7 @@ export class VisitStepperFormComponent implements OnInit {
         }
       )
     }else if(this.country){
-      console.log("pulling park data country: ", this.state)
+      console.log("pulling park data country: ", this.country)
       this.parkService.getParkByCountry(this.country).subscribe(
         data => {
           this.parks = data;

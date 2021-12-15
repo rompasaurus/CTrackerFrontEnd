@@ -63,7 +63,7 @@ export class ParkDropdownComponent implements OnInit {
         }
       )
     }else if(this.country){
-      console.log("pulling park data country: ", this.state)
+      console.log("pulling park data country: ", this.country)
       this.parkService.getParkByCountry(this.country).subscribe(
         data => {
           this.parks = data;
