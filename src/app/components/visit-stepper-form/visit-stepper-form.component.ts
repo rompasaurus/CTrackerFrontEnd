@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { of } from 'rxjs';
 import { ParkModel, ParkService } from 'src/app/services/park/park.service';
+import { RideModel, RideService } from 'src/app/services/ride/ride.service';
 
 
 @Component({
@@ -19,12 +21,15 @@ export class VisitStepperFormComponent implements OnInit {
   countries !: string[];
   states !: string[];
   state: string;
-  country : string;
-  park : ParkModel;
-  parks : ParkModel[];
-  
+  country: string;
+  parkID: number;
+  parks: ParkModel[];
+  park: ParkModel;
+  ride: RideModel;
+  rides: RideModel[];
 
-  constructor(private _formBuilder: FormBuilder, private parkService: ParkService) {}
+
+  constructor(private _formBuilder: FormBuilder, private parkService: ParkService, private rideService: RideService) { }
 
   ngOnInit() {
     this.pullCountryListData();
@@ -45,18 +50,18 @@ export class VisitStepperFormComponent implements OnInit {
     });
   }
 
-  pullCountryListData(){
+  pullCountryListData() {
     console.log("Pulling Country List Data");
-      this.parkService.getAllCountries().subscribe(
-        data => {
-          this.countries = data;
-        })
+    this.parkService.getAllCountries().subscribe(
+      data => {
+        this.countries = data;
+      })
   }
-  pullStates(){  
-    console.log( this.countrySelection )
+  pullStates() {
+    console.log(this.countrySelection)
     this.country = this.countrySelection.get("countrySelection")?.value;  //get("countrySelection").value;
     console.log("pulling states using country: ", this.country);
-    if(this.country){
+    if (this.country) {
       this.parkService.getAllStatesByCountry(this.country).subscribe(
         data => {
           this.states = data;
@@ -64,22 +69,37 @@ export class VisitStepperFormComponent implements OnInit {
       )
     }
   }
-  pullParkListData(){
-  this.country = this.countrySelection.get("countrySelection")?.value;
-  this.state = this.stateSelection.get("stateSelection")?.value;
-  console.log("pulling State selection: ", this.state);
-   if(this.state){
+  pullParkListData() {
+    console.log("pullind ride list using park: ",this.countrySelection)
+    this.country = this.countrySelection.get("countrySelection")?.value;
+    this.state = this.stateSelection.get("stateSelection")?.value;
+    console.log("pulling State selection: ", this.state);
+    if (this.state) {
       console.log("pulling park data state: ", this.state)
       this.parkService.getParkByState(this.state).subscribe(
         data => {
           this.parks = data;
         }
       )
-    }else if(this.country){
+    } else if (this.country) {
       console.log("pulling park data country: ", this.country)
       this.parkService.getParkByCountry(this.country).subscribe(
         data => {
           this.parks = data;
+        }
+      )
+    }
+  }
+  pullRideListData() {
+    this.parkID = this.parkSelection.get("parkSelection")?.value;
+    console.log("pullind ride list using park: ",this.parkID)
+    console.log("pullind ride list using park: ",this.parkSelection)
+    console.log("pullind ride list using park: ",this.stateSelection)
+    console.log("pullind ride list using park: ",this.rideSelection)
+    if (this.parkID) {
+      this.rideService.getAllRidesByPark(this.parkID).subscribe(
+        data => {
+          this.rides = data;
         }
       )
     }

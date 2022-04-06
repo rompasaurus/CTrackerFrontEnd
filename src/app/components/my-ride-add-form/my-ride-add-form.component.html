@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="rideId" class="col-md-4 col-form-label text-md-right">Ride Name rideId</label>
+                            <label for="rideId" class="col-md-4 col-form-label text-md-right">Ride Name</label>
                             <div class="col-md-6">
                                 <app-ride-dropdown [parkId]="parkSelect?.id" (rideSelected)="onRideSelected($event)"></app-ride-dropdown>   
                                 <span class="formError" *ngIf="!myRideAddForm.get('rideId').valid && myRideAddForm.get('rideId').touched">
