@@ -230,6 +230,79 @@ November 22 2021
   wire up password reset form and password reset email form 
   backend token and reset api created
 
+April 9, 2022
+  Setup Jenkins and created build pipeline for backend and fron end code deployment
+
+  Install Commands:
+    wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+    sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    sudo apt update
+    sudo apt install jenkins
+    //Port needed updated default is 8080 used by qbittorent
+    nano /etc/default/jenkins
+    //Run install once more
+    sudo apt install jenkins
+    sudo systemctl status jenkins
+    sudo systemctl enable jenkins
+    sudo ufw allow 8081
+
+  Updated pom.xml to keep the build name the same accross versions
+  <build>
+    <finalName>CTrackerBackend</finalName>
+    <plugins>
+      <plugin>
+  Gave jenkins sudo rights(dunno if this is a good idea)
+    visudo
+    added:
+      jenkins ALL=(ALL) NOPASSWD: ALL  
+
+  Jenkins Build commands
+    mvn clean install
+    sudo systemctl stop CTracker.service  
+    sudo cp target/CTrackerBackend.jar /bin/CTracker/ 
+    sudo systemctl start CTracker.service  
+    
+    
+
+  Set build jar as a service
+    Make user 
+      adduser ctracker
+    Create Service systemd file
+    sudo vim /etc/systemd/system/CTracker.service
+
+      [Unit]
+      Description=Ride Tally Spring API
+      [Service]
+      User=ctracker
+      # The configuration file application.properties should be here:
+      #change this to your workspace
+      WorkingDirectory=/bin/CTracker
+      #path to executable. 
+      #executable is a bash script which calls jar file 
+      ExecStart=/bin/java -jar CTrackerBackend.jar 
+      SuccessExitStatus=143
+      TimeoutStopSec=10
+      Restart=on-failure
+      RestartSec=5
+      [Install]
+      WantedBy=multi-user.target
+
+
+Create Start Script
+  vim /bin/CTracker/CTrackerBackendStart
+insert Run Command
+  sudo /usr/bin/java -jar /bin/CTracker/CTrackerBackend.jar 
+apply execute rights to script 
+  sudo chmod u+x CTrackerBackendStart
+
+Update daemon 
+  sudo systemctl daemon-reload
+Enable new service 
+  sudo systemctl enable CTracker.service  
+Start service 
+  sudo systemctl start CTracker.service 
+Setup logging
+  sudo journalctl --unit=CTracker
 
 To Do:
   password reset / registration errors and validations
@@ -239,3 +312,4 @@ To Do:
   field validaition and feedback for user login page
   ride count should wait until clicking stops to update or have a save button shyould never be negative
   so much to do 
+

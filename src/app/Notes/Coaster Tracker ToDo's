@@ -1,5 +1,5 @@
 Signup/accounts
-  Limit account to 1 per emails address
+  Limit account to 1 per email address
   add check for existing usernames prior to registration
 Ride add form
   DONE 11/7 Make a drop down with existing Parks in db for user to choose
@@ -25,3 +25,8 @@ Auth:
   Re-send registration emails
   Password reset
   OAuth w. google and facebook
+
+Setup Pipeline
+  redploy code upon commit using github/jenkins
+
+Backup Database
