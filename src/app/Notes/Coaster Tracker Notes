@@ -111,15 +111,15 @@ November 9 2021
         Copy the dist folder to the following location /var/www/html/ of centos
           scp -r /Users/michaelmchenry/Documents/CTrackerFrontEnd/dist/CTrackerFrontEnd/*  root@192.168.0.130:/var/www/html/
 
-      .htaaccess file needs added to the /www/html/ root to allow routes to work
-          <IfModule mod_rewrite.c>
-            RewriteEngine On
-            RewriteBase /
-            RewriteRule ^index\.html$ - [L]
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteCond %{REQUEST_FILENAME} !-d
-            RewriteRule . /index.html [L]
-          </IfModule>
+      .htaccess file needs added to the /www/html/ root to allow routes to work
+        <IfModule mod_rewrite.c>
+          RewriteEngine On
+          RewriteBase /
+          RewriteRule ^index\.html$ - [L]
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteCond %{REQUEST_FILENAME} !-d
+          RewriteRule . /index.html [L]
+        </IfModule>
       htaccess needs to be enabled with AllowOverride
         /etc/httpd/conf/httpd.conf > enable override
           change from AllowOverride none to AllowOverride All
@@ -288,21 +288,28 @@ April 9, 2022
       WantedBy=multi-user.target
 
 
-Create Start Script
-  vim /bin/CTracker/CTrackerBackendStart
-insert Run Command
-  sudo /usr/bin/java -jar /bin/CTracker/CTrackerBackend.jar 
-apply execute rights to script 
-  sudo chmod u+x CTrackerBackendStart
+    Create Start Script
+      vim /bin/CTracker/CTrackerBackendStart
+    insert Run Command
+      sudo /usr/bin/java -jar /bin/CTracker/CTrackerBackend.jar 
+    apply execute rights to script 
+      sudo chmod u+x CTrackerBackendStart
 
-Update daemon 
-  sudo systemctl daemon-reload
-Enable new service 
-  sudo systemctl enable CTracker.service  
-Start service 
-  sudo systemctl start CTracker.service 
-Setup logging
-  sudo journalctl --unit=CTracker
+    Update daemon 
+      sudo systemctl daemon-reload
+    Enable new service 
+      sudo systemctl enable CTracker.service  
+    Start service 
+      sudo systemctl start CTracker.service 
+    Setup logging
+      sudo journalctl --unit=CTracker
+
+    Create build step for fron end 
+      install node and angular
+      apt install nodejs
+      apt install npm
+      npm install -g @angular/cli
+
 
 To Do:
   password reset / registration errors and validations
