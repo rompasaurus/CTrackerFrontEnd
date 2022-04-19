@@ -311,6 +311,15 @@ April 9, 2022
       npm install -g @angular/cli
 Test Jenkins webhook
 
+
+Troubleshooting and logs n such:
+  Spring api service status:
+    sudo systemctl status CTracker.service
+  Read dem logs:
+    sudo journalctl --unit=CTracker
+  Added logging to spirng project appliocation.properties
+    logging.file.path=/media/dookalator
+    logging.file.name=CTrackerBackendLogs.log
 To Do:
   password reset / registration errors and validations
   add data openend to ride if possible
