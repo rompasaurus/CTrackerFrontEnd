@@ -88,7 +88,7 @@ export class MyRideAddFormComponent implements OnInit {
             this.toastr.error('Ride Failed to add please try again');
           });
       }else{
-        this.toastr.error('This form is missing something not sure what by you should figure it out');
+        this.toastr.error('This form is missing something not sure what but you should figure it out');
       }
     }
   

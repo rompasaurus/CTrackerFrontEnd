@@ -30,7 +30,6 @@ import { CityDropdownComponent } from './components/city-dropdown/city-dropdown.
 import { StateDropdownComponent } from './components/state-dropdown/state-dropdown.component';
 import { PasswordResetFormComponent } from './components/password-reset-form/password-reset-form.component';
 import { PasswordResetEmailSetupFormComponent } from './components/password-reset-email-setup-form/password-reset-email-setup-form.component';
-import { VisitStepperFormComponent } from './components/visit-stepper-form/visit-stepper-form.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -38,6 +37,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { VisitFormComponent } from './components/visit-form/visit-form.component';
 
 
 @NgModule({
@@ -63,7 +63,7 @@ import { MatSelectModule } from '@angular/material/select';
     StateDropdownComponent,
     PasswordResetFormComponent,
     PasswordResetEmailSetupFormComponent,
-    VisitStepperFormComponent
+    VisitFormComponent
   ],
   imports: [
     BrowserModule,
