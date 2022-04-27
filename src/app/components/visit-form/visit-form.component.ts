@@ -37,7 +37,7 @@ export class VisitFormComponent implements OnInit {
       state : new FormControl(''),
       rideId: new FormControl('', Validators.required),
       timesRode: new FormControl('', Validators.required),
-      firstRode: new FormControl('', Validators.required),
+      dateRode: new FormControl('', Validators.required),
       lastRode: new FormControl('', Validators.required),
       rankInPark: new FormControl('', Validators.required),
       rankOverall: new FormControl('', Validators.required),
@@ -93,8 +93,8 @@ export class VisitFormComponent implements OnInit {
       this.myRideModel.userName = this.authService.getUserName();
       this.myRideModel.rideId = this.myRideAddForm.get('rideId').value;
       this.myRideModel.timesRode = this.myRideAddForm.get('timesRode').value;
-      this.myRideModel.firstRode = this.myRideAddForm.get('firstRode').value;
-      this.myRideModel.lastRode = this.myRideAddForm.get('lastRode').value;
+      this.myRideModel.firstRode = this.myRideAddForm.get('dateRode').value;
+      this.myRideModel.lastRode = this.myRideAddForm.get('dateRode').value;
       this.myRideModel.rankInPark = this.myRideAddForm.get('rankInPark').value;
       this.myRideModel.rankOverall = this.myRideAddForm.get('rankOverall').value;
       this.myRideModel.rating = this.myRideAddForm.get('rating').value;

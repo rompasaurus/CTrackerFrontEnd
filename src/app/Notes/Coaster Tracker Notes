@@ -71,7 +71,7 @@ November 7 2021
 
 November 8 2021
   Status
-    MyRides FOrm with prefille ride and park dropdowns
+    MyRides FOrm with prefile ride and park dropdowns
     began scrapping rcdb
       ran into issues with cors and http requests
       setup https://github.com/Rob--W/cors-anywhere/ cors anywhere proxy to bypass this
@@ -309,8 +309,12 @@ April 9, 2022
       apt install nodejs
       apt install npm
       npm install -g @angular/cli
-Test Jenkins webhook
 
+Creating a component using the Angular CLI
+  To create a component using the Angular CLI:
+
+  From a terminal window, navigate to the directory containing your application.
+  Run the ng generate component <component-name> command, where <component-name> is the name
 
 Troubleshooting and logs n such:
   Spring api service status:
@@ -320,6 +324,7 @@ Troubleshooting and logs n such:
   Added logging to spirng project appliocation.properties
     logging.file.path=/media/dookalator
     logging.file.name=CTrackerBackendLogs.log
+
 To Do:
   password reset / registration errors and validations
   add data openend to ride if possible
@@ -327,5 +332,8 @@ To Do:
   add ride by park visit dropdown
   field validaition and feedback for user login page
   ride count should wait until clicking stops to update or have a save button shyould never be negative
+  cascade deletes for users and corresponding linked tables
   so much to do 
 
+Email
+  Is a pain in the ass cant get past span filters with my own postfix setup reverted to google to handle email notification

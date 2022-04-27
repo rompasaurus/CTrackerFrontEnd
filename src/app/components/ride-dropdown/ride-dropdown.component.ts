@@ -36,21 +36,10 @@ export class RideDropdownComponent implements OnInit {
         data => {
           this.rides = data;
           this.rides.forEach(element => {
-            //console.log(element);
           });
         }
       )
     }
-    // else{
-    //   this.rideService.getAllRides().subscribe(
-    //     data => {
-    //       this.rides = data;
-    //       this.rides.forEach(element => {
-    //         //onsole.log(element);
-    //       });
-    //     }
-    //   )
-    // }
   }
   updateSelectedRide(){
     let selectedRide = this.rideSelect.get('rideControl').value;

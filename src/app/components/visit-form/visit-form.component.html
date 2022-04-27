@@ -1,87 +1,99 @@
-<div class="my-park-form-section" *ngIf="showParkSelector" class="row container-fluid"  id="divshow">
-    <h1 class="my-park-form-section justify-content-center">Yo Nerd Select the park you went to:</h1>
-    <div class="row justify-content-center">
+<div class="my-park-form-section" *ngIf="showParkSelector" id="divshow">
+    <div class="row">
+        <div  class="col-md-12">
+            <h1>Which Park  did you visit?</h1>
+        </div>
+    </div>
+    <div class="row ">
         <div class="col-md-12">
-            <div class="">
-                <form [formGroup]="myRideAddForm" (ngSubmit)="addRide()">
-                    <div class="form-group row">
-                        <label for="country" class="col-md-4 col-form-label text-md-right">Country: </label>
-                        <div class="col-md-6">
-                            <app-country-dropdown (countrySelected)="onCountrySelected($event)"></app-country-dropdown>
-                            <span class="formError" *ngIf="!myRideAddForm.get('country').valid && myRideAddForm.get('country').touched">
-                                Country cannot be empty
-                            </span> 
-                        </div>
+            <form [formGroup]="myRideAddForm" (ngSubmit)="addRide()">
+                <div class="form-group row">
+                    <label for="country" class="col-md-4 col-form-label text-md-right">Country: </label>
+                    <div class="col-md-6">
+                        <app-country-dropdown (countrySelected)="onCountrySelected($event)"></app-country-dropdown>
+                        <span class="formError" *ngIf="!myRideAddForm.get('country').valid && myRideAddForm.get('country').touched">
+                            Country cannot be empty
+                        </span> 
                     </div>
-                    <div class="form-group row">
-                        <label for="state" class="col-md-4 col-form-label text-md-right">State: </label>
-                        <div class="col-md-6">
-                            <app-state-dropdown [country]="countrySelect" (stateSelected)="onStateSelected($event)"></app-state-dropdown>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label for="state" class="col-md-4 col-form-label text-md-right">State: </label>
+                    <div class="col-md-6">
+                        <app-state-dropdown [country]="countrySelect" (stateSelected)="onStateSelected($event)"></app-state-dropdown>
                     </div>
-                    <div class="form-group row">
-                        <label for="city" class="col-md-4 col-form-label text-md-right">City: </label>
-                        <div class="col-md-6">
-                            <app-city-dropdown [state]="stateSelect" (citySelected)="onCitySelected($event)"></app-city-dropdown>
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label for="city" class="col-md-4 col-form-label text-md-right">City: </label>
+                    <div class="col-md-6">
+                        <app-city-dropdown [state]="stateSelect" (citySelected)="onCitySelected($event)"></app-city-dropdown>
                     </div>
-                    <div class="form-group row">
-                        <label for="parkId" class="col-md-4 col-form-label text-md-right">Park: </label>
-                        <div class="col-md-6">
-                            <app-park-dropdown [country]="countrySelect" [city] = "citySelect" [state]="stateSelect" (parkSelected)="onParkSelected($event)"></app-park-dropdown>
-                            <span class="formError" *ngIf="!myRideAddForm.get('parkId').valid && myRideAddForm.get('parkId').touched">
-                                Park cannot be empty
-                            </span> 
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label for="parkId" class="col-md-4 col-form-label text-md-right">Park: </label>
+                    <div class="col-md-6">
+                        <app-park-dropdown [country]="countrySelect" [city] = "citySelect" [state]="stateSelect" (parkSelected)="onParkSelected($event)"></app-park-dropdown>
+                        <span class="formError" *ngIf="!myRideAddForm.get('parkId').valid && myRideAddForm.get('parkId').touched">
+                            Park cannot be empty
+                        </span> 
                     </div>
-                    <!-- <span class="col-md-6 offset-md-4">
-                        <button type="submit" class="addPark">
-                            Add Ride
-                        </button>
-                    </span>    -->
-                    <div class="submit-failed" *ngIf='this.isError'>
-                            <p class="login-failed-text">Cannot Add Ride FIX IT</p>   
-                    </div>
-                    
-                </form>
-            </div>
+                </div>
+                <!-- <span class="col-md-6 offset-md-4">
+                    <button type="submit" class="addPark">
+                        Add Ride
+                    </button>
+                </span>    -->
+                <div class="submit-failed" *ngIf='this.isError'>
+                        <p class="login-failed-text">Cannot Add Ride FIX IT</p>   
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<div class="my-rides-form-section" *ngIf="showRideSelector" class="row container-fluid"  id="divshow2">
-    <div class="my-rides-form-section col-md-12">
-        <div class="row">
-            <h1 class="">{{this.parkSelect.parkName}}<p style="color: blue;" (click)="switchToParkView()">change</p></h1>    
-        </div>
-        <div class="row">
-            <h4 class="my-park-form-section">Select the Rides you rode.. no fibbing:</h4>
-        </div>
-        
-    </div>
-    <div class="my-ride-list-section">
-        <div class="ride-card" *ngFor="let parkRide of parkRideList">      
-            <div class="ride">
-                <hr>
-                <div class="row text-left">
-                    <div class="col-4">
-                        <h2 id="rideName"> {{parkRide.name}} </h2>
-                        
-                    </div>
-                    <div class="col-5">
-                        <p>
-                            <b>{{ parkRide.park.parkName}}, {{ parkRide.park.city}}, {{ parkRide.park.state}}</b> 
-                        </p>
-                    </div>
-                    <div class="col-1">
-                        <div class="row text middle">
-                            <a (click)="addToRideCount(parkRide,1)">+</a>
-                        </div>
-                        <div class="row text middle">
-                            <a (click)="addToRideCount(parkRide,-1)">-</a>
-                        </div>
-                    </div>
-                </div>  
+<div class="my-rides-form-section" *ngIf="showRideSelector" id="divshow2">
+    <div class=" row">
+        <div class="col-md-12">
+            <div class="row">
+                <h1 class="col-md-12">{{this.parkSelect.parkName}}<p style="color: blue;" (click)="switchToParkView()">change</p></h1>    
             </div>
+            <div class="row">
+                <h4 class="col-md-12">Select the Rides you rode.. no fibbing:</h4>
+            </div>
+            <div  class="row">
+                <h2 class="col-md-12">Date Visited</h2>
+            </div> 
+            <div class="row ">
+                <div class="col-md-12">
+                    <input type="date" id="dateRode" class="form-control" name="dateRode" required>
+                    <span class="formError" *ngIf="!myRideAddForm.get('dateRode').valid && myRideAddForm.get('dateRode').touched">
+                        firstRode cannot be empty
+                    </span>      
+                </div>                          
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="ride-card col-md-12" *ngFor="let parkRide of parkRideList">      
+            <div class="row text-left ride">
+                <div class="col-4">
+                    <h2 id="rideName"> {{parkRide.name}} </h2>
+                </div>
+                <div class="col-5">
+                    <p>
+                        <b>{{ parkRide.park.parkName}}, {{ parkRide.park.city}}, {{ parkRide.park.state}}</b> 
+                    </p>
+                </div>
+                <div class="col-1">
+                    <div class="row text middle">
+                        <a (click)="addToRideCount(parkRide,1)">+</a>
+                    </div>
+                    <div class="row text middle">
+                        <a (click)="addToRideCount(parkRide,-1)">-</a>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <h2 id="timesRode">0</h2>
+                </div>
+            </div>  
         </div>
     </div>
 </div>
