@@ -129,6 +129,9 @@ export class VisitFormComponent implements OnInit {
       this.toastr.error('This form is missing something not sure what but you should figure it out');
     }
   }
+  addVisit(){
+    
+  }
 
 }
 

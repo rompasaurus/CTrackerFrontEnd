@@ -37,11 +37,6 @@
                         </span> 
                     </div>
                 </div>
-                <!-- <span class="col-md-6 offset-md-4">
-                    <button type="submit" class="addPark">
-                        Add Ride
-                    </button>
-                </span>    -->
                 <div class="submit-failed" *ngIf='this.isError'>
                         <p class="login-failed-text">Cannot Add Ride FIX IT</p>   
                 </div>
@@ -109,4 +104,5 @@
             </div>  
         </div>
     </div>
+    <button id="addVisitButton" (click)="addVisit()"> Add Visit</button>
 </div>
