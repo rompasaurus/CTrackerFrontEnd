@@ -17,6 +17,7 @@ export class VisitFormComponent implements OnInit {
   myRideAddForm!: FormGroup;
   isError!: boolean;
   myRideModel!: MyRideModel;
+  myRideModelList: MyRideModel[] = [];
   parkSelect!:ParkModel;
   rideSelect !: RideModel;
   citySelect!: string;
@@ -25,6 +26,7 @@ export class VisitFormComponent implements OnInit {
   showParkSelector: boolean = true;
   showRideSelector: boolean = false;
   parkRideList!: RideModel[];
+  rideCountMap: Map<string,number> = new Map();
 
 
   constructor(private myRideService: MyRideService,private rideService:RideService, private activatedRoute: ActivatedRoute,
@@ -50,6 +52,7 @@ export class VisitFormComponent implements OnInit {
     this.myRideAddForm.get('parkId')?.setValue(this.parkSelect.id);
     this.showParkSelector = false;
     this.showRideSelector = true;
+    this.rideCountMap = new Map();
     this.pullRideListData();
   }
   switchToParkView(){
@@ -69,7 +72,21 @@ export class VisitFormComponent implements OnInit {
     this.myRideAddForm.get('stateSelect')?.setValue(this.stateSelect);
   }
   addToRideCount(parkRide:RideModel,count:number){
-
+    let newRide = new MyRideModel();
+    let containsRide = false;
+    newRide.park = parkRide.park
+    newRide.timesRode = count;
+    newRide.ride = parkRide;
+    if(this.rideCountMap.has(parkRide.name)){
+      if(this.rideCountMap.get(parkRide.name) == 0 && count < 0){
+        console.log("Can't have a negative ride count");
+      }else{
+        this.rideCountMap.set(parkRide.name,this.rideCountMap.get(parkRide.name) + count);
+      }
+    }else{
+      if(count>0) this.rideCountMap.set(parkRide.name,count);
+    }
+    console.log("rideCountMap: ", this.rideCountMap)
   }
   pullRideListData(){
     console.log("Pulling Ride List Data ParkID: ",this.parkSelect.id);

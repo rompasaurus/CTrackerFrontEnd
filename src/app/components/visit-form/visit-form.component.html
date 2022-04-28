@@ -52,46 +52,56 @@
 <div class="my-rides-form-section" *ngIf="showRideSelector" id="divshow2">
     <div class=" row">
         <div class="col-md-12">
+            <div  class="row">
+                <h2 class="col-md-12">{{ this.parkSelect.city}}, {{ this.parkSelect.state}}</h2>
+            </div>
             <div class="row">
                 <h1 class="col-md-12">{{this.parkSelect.parkName}}<p style="color: blue;" (click)="switchToParkView()">change</p></h1>    
             </div>
-            <div class="row">
-                <h4 class="col-md-12">Select the Rides you rode.. no fibbing:</h4>
-            </div>
             <div  class="row">
-                <h2 class="col-md-12">Date Visited</h2>
+                <h2 class="col-md-12">What Date Did you Visit?</h2>
             </div> 
             <div class="row ">
-                <div class="col-md-12">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
                     <input type="date" id="dateRode" class="form-control" name="dateRode" required>
                     <span class="formError" *ngIf="!myRideAddForm.get('dateRode').valid && myRideAddForm.get('dateRode').touched">
                         firstRode cannot be empty
                     </span>      
-                </div>                          
+                </div> 
+                <div class="col-md-2"></div>                         
+            </div>
+            <br>
+            <div class="row">
+                <h2 class="col-md-12">Select the Rides you rode.. no fibbing:</h2>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="ride-card col-md-12" *ngFor="let parkRide of parkRideList">      
-            <div class="row text-left ride">
-                <div class="col-4">
-                    <h2 id="rideName"> {{parkRide.name}} </h2>
+            <div class="row text ride">
+                <div class="col-2">
+
                 </div>
                 <div class="col-5">
+                    <h2 id="rideName">{{parkRide.name}} </h2>
+                </div>
+                <!-- <div class="col-6">
                     <p>
-                        <b>{{ parkRide.park.parkName}}, {{ parkRide.park.city}}, {{ parkRide.park.state}}</b> 
+                        <b>{{ parkRide.park.parkName}},{{ parkRide.park.city}}, {{ parkRide.park.state}}</b> 
                     </p>
+                </div> -->
+                <div class="col-1">
+                    <button (click)="addToRideCount(parkRide,-1)">-</button>
                 </div>
                 <div class="col-1">
-                    <div class="row text middle">
-                        <a (click)="addToRideCount(parkRide,1)">+</a>
-                    </div>
-                    <div class="row text middle">
-                        <a (click)="addToRideCount(parkRide,-1)">-</a>
-                    </div>
+                    <h2 id="{{parkRide.name}} Ride Count">{{this.rideCountMap.get(parkRide.name) ? this.rideCountMap.get(parkRide.name) : 0}} </h2>
+                </div>
+                <div class="col-1">
+                    <button (click)="addToRideCount(parkRide,1)">+</button>
                 </div>
                 <div class="col-2">
-                    <h2 id="timesRode">0</h2>
+
                 </div>
             </div>  
         </div>
