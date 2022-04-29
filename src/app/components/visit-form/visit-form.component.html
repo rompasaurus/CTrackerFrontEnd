@@ -6,7 +6,7 @@
     </div>
     <div class="row ">
         <div class="col-md-12">
-            <form [formGroup]="myRideAddForm" (ngSubmit)="addRide()">
+            <form [formGroup]="myRideAddForm" (ngSubmit)="addVisit()">
                 <div class="form-group row">
                     <label for="country" class="col-md-4 col-form-label text-md-right">Country: </label>
                     <div class="col-md-6">
@@ -62,7 +62,7 @@
             <div class="row ">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
-                    <input type="date" id="dateRode" class="form-control" name="dateRode" required>
+                    <input type="date" id="dateRode" class="form-control" name="dateRode" value="{{todaysDate}}" >
                     <span class="formError" *ngIf="!myRideAddForm.get('dateRode').valid && myRideAddForm.get('dateRode').touched">
                         firstRode cannot be empty
                     </span>      
@@ -81,7 +81,7 @@
                 <div class="col-1">
 
                 </div>
-                <div class="col-6">
+                <div class="col-6 text-left">
                     <h2 id="rideName">{{parkRide.name}} </h2>
                 </div>
                 <!-- <div class="col-6">
@@ -92,8 +92,8 @@
                 <div class="col-1">
                     <button (click)="addToRideCount(parkRide,-1)">-</button>
                 </div>
-                <div class="col-2">
-                    <h2 id="{{parkRide.name}} Ride Count">{{this.rideCountMap.get(parkRide.name) ? this.rideCountMap.get(parkRide.name) : 0}} </h2>
+                <div class="col-1 ">
+                    <h2 class=""id="{{parkRide.name}} Ride Count">{{this.rideCountMap.get(parkRide.name) ? this.rideCountMap.get(parkRide.name) : 0}} </h2>
                 </div>
                 <div class="col-1">
                     <button (click)="addToRideCount(parkRide,1)">+</button>

@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent},
   { path: 'scrape', component: RcdbScrapeComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'visit', component: VisitFormComponent },
+  { path: 'visit', component: VisitFormComponent, canActivate:[AuthGuard] },
   { path: 'setPassword/:token', component: PasswordResetFormComponent },
   { path: 'reset', component: PasswordResetEmailSetupFormComponent },
   { path: 'parks', component: ParkListComponent, canActivate:[AuthGuard]},
