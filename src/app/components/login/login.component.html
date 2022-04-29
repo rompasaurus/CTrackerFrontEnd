@@ -26,13 +26,21 @@
                             </div>
                         </div>
  
-                        <span class="col-md-6 offset-md-4">
-                            <button type="submit" class="login">
+                        <div class="form-group row">
+                            <div class = "col-4">
+
+                            </div>
+                            <button class = "col-4 login" type="submit">
                                 Login
                             </button>
+                            <div class = "col-4">
+
+                            </div>
+                        </div>   
+                        <span class="form-group row">
                             <span style="padding-left: 15px">New User? <a routerLink="/signup">Sign up</a></span>
                             <span style="padding-left: 15px">Forgot Password? <a routerLink="/reset">Reset Password</a></span>
-                        </span>   
+                        </span>  
                         <div class="login-failed" *ngIf='this.isError'>
                              <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>   
                         </div>
