@@ -1,8 +1,12 @@
 .my-park-form-section {
-    margin: 100px;
+    margin-top: 100px;
+    margin-left: 25px;
+    margin-right: 25px;
     text-align: center;
   }
 .my-rides-form-section {
-margin: 100px;
-text-align: center;
+    margin-top: 100px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: center;
 }
