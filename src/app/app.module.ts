@@ -38,6 +38,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { VisitFormComponent } from './components/visit-form/visit-form.component';
+import { MyRideListByParkComponent } from './components/my-ride-list-by-park/my-ride-list-by-park.component';
+import { MyRideListByRideComponent } from './components/my-ride-list-by-ride/my-ride-list-by-ride.component';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { VisitFormComponent } from './components/visit-form/visit-form.component
     StateDropdownComponent,
     PasswordResetFormComponent,
     PasswordResetEmailSetupFormComponent,
-    VisitFormComponent
+    VisitFormComponent,
+    MyRideListByParkComponent,
+    MyRideListByRideComponent
   ],
   imports: [
     BrowserModule,

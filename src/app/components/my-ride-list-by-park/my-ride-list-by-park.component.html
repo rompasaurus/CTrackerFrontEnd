@@ -1,0 +1,51 @@
+<div class="my-ride-list-section">
+    <div class="park-ride-card" *ngFor="let park of myParks">
+        <h1>
+            <b>{{ park.parkName}}, {{ park.city}}, {{ park.state}}</b>
+        </h1>
+        <div *ngFor="let myRide of myRides;">
+            <div *ngIf="myRide.park.id === park.id">
+                <div class="ride">
+                    <hr>
+                    <div class="row text-left">
+                        <div class="col-6">
+                            <h2 id="rideName"> {{myRide.ride.name}} </h2>
+
+                        </div>
+                        <!-- <div class="col-5">
+                            <p>
+                                <b>{{ myRide.park.parkName}}, {{ myRide.park.city}}, {{ myRide.park.state}}</b>
+                            </p>
+                            <p id="lastRode">Last Rode: {{ myRide.lastRode | date: 'MM/dd/yyyy' }} </p>
+                        </div> -->
+                        <div class="col-2">
+                            <div class="row text middle">
+                                <h1>{{ myRide.timesRode}}</h1>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row text middle">
+                                <a (click)="addToRideCount(myRide,1)">+</a>
+                            </div>
+                            <div class="row text middle">
+                                <a (click)="addToRideCount(myRide,-1)">-</a>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="row">
+                                <a></a>
+                            </div>
+                            <div class="row">
+                                <button (click)=deleteMyRide(myRide.id)>Delete</button>
+                            </div>
+                            <div class="row">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

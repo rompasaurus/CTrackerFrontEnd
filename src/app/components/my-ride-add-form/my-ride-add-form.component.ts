@@ -2,12 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Ride } from 'src/app/common/ride';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { MyRideModel, MyRideService } from 'src/app/services/myRide/my-ride.service';
 import { ParkModel } from 'src/app/services/park/park.service';
 import { RideModel, RideService } from 'src/app/services/ride/ride.service';
-import { ParkDropdownComponent } from '../park-dropdown/park-dropdown.component';
 
 @Component({
   selector: 'app-my-ride-add-form',

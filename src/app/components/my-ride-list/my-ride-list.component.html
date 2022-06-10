@@ -1,44 +1,13 @@
-<div class="my-ride-list-section">
-    <div class="ride-card" *ngFor="let myRide of myRides">      
-        <div class="ride">
-            <hr>
-            <div class="row text-left">
-                <div class="col-4">
-                    <h2 id="rideName"> {{myRide.ride.name}} </h2>
-                    
-                </div>
-                <div class="col-5">
-                    <p>
-                        <b>{{ myRide.park.parkName}}, {{ myRide.park.city}}, {{ myRide.park.state}}</b> 
-                    </p>
-                    <!-- <p>First Rode: {{ myRide.firstRode | date: 'MM/dd/yyyy' }} </p> -->
-                    <p id="lastRode">Last Rode: {{ myRide.lastRode | date: 'MM/dd/yyyy' }} </p>
-                </div>
-                <div class = "col-1">
-                    <div class="row text middle">
-                        <h1>{{ myRide.timesRode}}</h1>
-                    </div>
-                </div>
-                <div class="col-1">
-                    <div class="row text middle">
-                        <a (click)="addToRideCount(myRide,1)">+</a>
-                    </div>
-                    <div class="row text middle">
-                        <a (click)="addToRideCount(myRide,-1)">-</a>
-                    </div>
-                </div>
-                <div class="col-1">
-                    <div class="row">
-                        <a></a>
-                    </div>
-                    <div class="row">
-                        <button (click)=deleteMyRide(myRide.id)>Delete</button>
-                    </div>
-                    <div class= "row">
+<p>Total Rides: {{myRides.length}}</p>
+<button (click)="toggle('ride')">By ride</button>
+<button (click)="toggle('park')">By Park</button>
+<button (click)="toggle('visit')">By visit</button>
+<ng-container *ngIf="ride">
+    <app-my-ride-list-by-ride [myRides] = myRides></app-my-ride-list-by-ride>
+</ng-container>
+<ng-container *ngIf="park">
+    <app-my-ride-list-by-park [myRides] = myRides [myParks] = myParks></app-my-ride-list-by-park>
+</ng-container>
+<ng-container *ngIf="visit">
 
-                    </div>
-                </div>
-            </div>  
-        </div>
-    </div>
-</div>
+</ng-container>
