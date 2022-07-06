@@ -141,6 +141,10 @@ November 9 2021
         </VirtualHost>
         generate pks12 for spring from ssl cert to all spring to work with ssl request
           https://stackoverflow.com/questions/36991562/how-can-i-set-up-a-letsencrypt-ssl-certificate-and-use-it-in-a-spring-boot-appli
+          generate renew spring cert command
+          `openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name tomcat -CAfile chain.pem -caname root`
+
+
           server.port=8443
           server.ssl.key-store=classpath:keystore.p12
           server.ssl.key-store-password=Bigmac12
