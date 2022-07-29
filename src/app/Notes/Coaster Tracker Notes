@@ -341,3 +341,13 @@ To Do:
 
 Email
   Is a pain in the ass cant get past span filters with my own postfix setup reverted to google to handle email notification
+
+July 28 2022
+  Create a backlog page to add/modify/admin delete backlog items and show progress
+  need:
+    Backlog Object type 
+      Title, description,date added, priority,status enum
+    Generate Backlog component:
+      ng generate component components/backlog/backlog
+    Generate Add Backlog form:
+      ng generate component components/backlog/backlog-form
