@@ -40,6 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { VisitFormComponent } from './components/visit-form/visit-form.component';
 import { MyRideListByParkComponent } from './components/my-ride-list-by-park/my-ride-list-by-park.component';
 import { MyRideListByRideComponent } from './components/my-ride-list-by-ride/my-ride-list-by-ride.component';
+import { BacklogComponent } from './components/backlog/backlog/backlog.component';
+import { BacklogFormComponent } from './components/backlog/backlog-form/backlog-form.component';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import { MyRideListByRideComponent } from './components/my-ride-list-by-ride/my-
     PasswordResetEmailSetupFormComponent,
     VisitFormComponent,
     MyRideListByParkComponent,
-    MyRideListByRideComponent
+    MyRideListByRideComponent,
+    BacklogComponent,
+    BacklogFormComponent
   ],
   imports: [
     BrowserModule,
