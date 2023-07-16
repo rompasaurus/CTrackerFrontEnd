@@ -351,3 +351,25 @@ July 28 2022
       ng generate component components/backlog/backlog
     Generate Add Backlog form:
       ng generate component components/backlog/backlog-form
+
+
+July 18 2023
+  Back at it a bit after... a year  
+  Setting up webserver again this time on a raspberry pi 
+  Trying to get things going locally first on windows running into sql auth issues java.sql.SQLException: Access denied for user 'ctracker'@'localhost' 
+    Had a duplicate user entry for ctracker for some reason deleted it and all is well: DROP USER 'ctracker';
+  On to the front end code and getting it to talk locally to spring 
+    spring.allowed.origin = https://192.168.178.40:4200
+    spring.allowed.subnet = https://192.168.178.40:4200
+    spring.allowed.endpoint = https://192.168.178.40:8080
+    export const BASE_URL = "http://192.168.178.40:8443"
+    npm install 
+    npm install -g @angular/cli
+    set NODE_OPTIONS=--openssl-legacy-provider
+    $env:NODE_OPTIONS = "--openssl-legacy-provider"
+    ng serve --host 0.0.0.0
+    had to also comment out the ssl bit so that the page can connect to the api
+    #server.ssl.key-store=classpath:keystore.p12
+    #server.ssl.key-store-password=Bigmac12
+    ### PKCS12 or JKS
+    #server.ssl.keyStoreType=PKCS12
