@@ -1,3 +1,10 @@
+CTRacker Frontend run guide:
+    This project uses older node version will through errors trying to run as node version 20 and above, install nvm (node version manager) 
+    setup node 16 via:
+        nvm install 16 
+    Run project as 16: 
+        nvm use 16 
+        npm start no errors should show now
 # CTrackerFrontEnd
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
